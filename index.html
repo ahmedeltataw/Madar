@@ -5,21 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="مدار — وجهتك الأولى للسفر الفاخر وخدمات كبار الشخصيات. باقات شهر العسل، الإقامات الفاخرة، استقبال وتوديع كبار الشخصيات، وخدمات الكونسيرج الحصرية حول العالم.">
+        content="مدار منصة عربية متخصصة لإدارة رحلات العمرة والمؤسسات — أنشئ رحلتك، اصدر تذاكر QR، وتابع الحضور تلقائياً مع تقارير فورية بصيغة Excel.">
     <meta name="theme-color" content="#39874D">
     <link rel="icon" type="image/icon" href="img/fav.svg" sizes="32x32">
-    <title>مدار | سفر فاخر وخدمات كونسيرج</title>
-    <meta property="og:title" content="مدار | سفر فاخر وخدمات كونسيرج">
+    <link rel="canonical" href="https://Madar.sa/">
+    <title>مدار | منصة إدارة رحلات العمرة</title>
+    <meta property="og:title" content="مدار | منصة إدارة رحلات العمرة">
     <meta property="og:description"
-        content="باقات شهر العسل، الإقامات الفاخرة، استقبال وتوديع كبار الشخصيات، وخدمات الكونسيرج الحصرية حول العالم.">
+        content="أنشئ رحلتك خلال دقائق، وأصدر تذاكر QR، وتابع حضور المشاركين تلقائياً — كل ذلك من مكان واحد على السحابة.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://Madar.sa/">
-    <meta property="og:image" content="img/places/maldives.jpg">
+    <meta property="og:image" content="https://Madar.sa/img/og.png">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- swiper -->
     <link rel="stylesheet" href="css/swiper.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "مدار",
+        "url": "https://Madar.sa/",
+        "logo": "https://Madar.sa/img/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+966547164990",
+            "contactType": "customer support"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -40,42 +57,41 @@
                     <!-- logo -->
                     <a href="index.html" class="logo h-22"><img src="img/logo.png" alt="مدار" loading="eager"></a>
                     <!-- list  -->
-                    <!-- <ul class="list d-flex lg:align-items-center lg:flex-wrap border-none lg:relative m-0 gap-14 lg-max:flex-col  lg-max:pt-14 lg-max:w-140 lg-max:max-w-full lg-max:h-screen"
+                    <ul class="list d-flex lg:align-items-center lg:flex-wrap border-none lg:relative m-0 gap-14 lg:gap-8 lg-max:flex-col  lg-max:pt-14 lg-max:w-140 lg-max:max-w-full lg-max:h-screen"
                         popover="" id="mobileList">
-                        <button type="button" class="btn btn-rounded isBorder btn-icon lg:d-none mx-6"
-                            popovertarget="mobileList" popovertargetaction="hide">
-                            <i class="fa-light fa-xmark"></i>
-                        </button>
-                        <li><a href="index.html" class="nav-link">الرئيسية</a></li>
-                        <li><a href="about.html" class="nav-link">من نحن</a></li>
-                        <li><a href="services.html" class="nav-link">خدماتنا</a></li>
-                        <li class="lg:d-none"><a href="contact.html" class="nav-link ">احجز الآن</a></li>
-                        <li><a href="blog.html" class="nav-link">المدونة</a></li>
-                        <li><a href="https://Madar.sa/Home/UserGuide" class="nav-link">دليل الاستخدام</a></li>
+                        <li class="mobileClose lg:d-none">
+                            <button type="button" class="btn btn-rounded isBorder btn-icon"
+                                popovertarget="mobileList" popovertargetaction="hide" aria-label="إغلاق القائمة">
+                                <i class="fa-light fa-xmark"></i>
+                            </button>
+                        </li>
+                        <li><a href="#hero" class="nav-link">الرئيسية</a></li>
+                        <li><a href="#about" class="nav-link">من نحن</a></li>
+                        <li><a href="#features" class="nav-link">خدماتنا</a></li>
+                        <li class="lg:d-none"><a href="#contact" class="nav-link ">ابدأ الآن</a></li>
+                        <li><a href="#guide" class="nav-link">دليل الاستخدام</a></li>
                         <li><a href="https://Madar.sa/Auth/Login" class="nav-link">تسجيل الدخول</a></li>
-                    </ul> -->
+                    </ul>
                     <!-- button  -->
                     <menu class="d-flex align-items-center gap-3">
                         <!--  -->
                         <li class="lg-max:d-none">
-                            <button type="button" class="btn btn-rounded ">
-                                <a href="contact.html">
-                                    احجز الآن
-                                    <i class="fa-solid fa-paper-plane ps-2"></i>
-                                </a>
-                            </button>
+                            <a href="#contact" class="btn btn-rounded">
+                                ابدأ الآن
+                                <i class="fa-solid fa-paper-plane ps-2"></i>
+                            </a>
                         </li>
                         <!--  -->
                         <li>
                             <button type="button" class="btn btn-rounded btn-icon isBorder  langBtn"
-                                popovertarget="langList">
+                                popovertarget="langList" aria-label="تغيير اللغة">
                                 <i class="fa-light fa-globe"></i>
                             </button>
                         </li>
                         <!--  -->
                         <li class="lg:d-none">
                             <button type="button" class="btn btn-rounded btn-icon " popovertarget="mobileList"
-                                popovertargetaction="show">
+                                popovertargetaction="show" aria-label="فتح القائمة">
                                 <i class="fa-light fa-bars"></i>
 
                             </button>
@@ -103,88 +119,211 @@
         <!-------end header ------->
 
         <!-- hero -->
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="container">
-                <!-- heroTop -->
-                <div class="heroTop d-grid align-items-center">
-                    <div class="HeroContent ">
-                        <div class="lineTop d-flex gap-12 align-items-center">
-                            <p class="w-140 max-w-full fs-18 line-relaxed ">
-                                خطط واحجز رحلتك المثالية مع خبراء السفر لدينا واستلهم من تجاربنا الفاخرة حول العالم.
-                            </p>
-                            <h1 class="">
-                                استمتع بأفضل
-                                <span class="spanColor  lg:d-none ">عطلة</span>
-                            </h1>
-                        </div>
-                        <div class="lineBottom d-flex gap-12 align-items-center">
-                            <h1 class="spanColor  ">عطلة</h1>
-                            <figure>
-                                <img src="img/hero/V1.jpg" alt="شاطئ استوائي" loading="eager">
-                            </figure>
-                        </div>
-
+                <!-- heroInner -->
+                <div class="heroInner">
+                    <!-- 1. badge -->
+                    <span class="heroBadge">
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        الحل الذكي لإدارة رحلات العمرة والمؤسسات
+                    </span>
+                    <!-- 2. headline -->
+                    <h1 class="heroTitle">
+                        أدر رحلاتك <span class="spanColor">بذكاءٍ وسرعة</span>
+                        من منصة عربية واحدة
+                    </h1>
+                    <!-- 3. paragraph -->
+                    <p class="heroDesc">
+                        مدار منصة عربية متخصصة لإدارة رحلات العمرة والجمعيات
+                        والمؤسسات — أنشئ رحلتك، اجمع بيانات المشاركين،
+                        وتابع الحضور تلقائياً من مكان واحد.
+                    </p>
+                    <!-- 4. actions -->
+                    <div class="heroActions">
+                        <a href="https://wa.me/966547164990" class="btn btn-rounded">
+                            ابدأ تجربتك المجانية
+                            <i class="fa-solid fa-paper-plane ps-2" aria-hidden="true"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-rounded isBorder">
+                            احجز عرضاً توضيحياً
+                            <i class="fa-solid fa-calendar-check ps-2" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <figure class="ImgContainer w-full moveLeft">
-                        <img src="img/hero/H1.jpg" alt="منظر سانتوريني الخلاب" loading="eager">
-                    </figure>
+                    <!-- 5. trust -->
+                    <ul class="heroTrust">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> تجربة مجانية</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> بدون بطاقة ائتمانية</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> إعداد خلال دقائق</li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i> دعم فني متخصص</li>
+                    </ul>
                 </div>
-                <!-- heroBottom -->
-                <div class="heroBottom d-grid align-items-start gap-12 ">
-                    <!--  -->
-                    <div class="img  d-grid gap-8">
-                        <figure class="ImgContainer ">
-                            <img src="img/hero/H2.jpg" alt="شاطئ المالديف الفاخر" loading="eager">
-
-                        </figure>
-                        <figure class="ImgContainer  ">
-                            <img src="img/hero/H3.jpg" alt="منتجع فاخر" loading="eager">
-
-                        </figure>
-                    </div>
-                    <div class="HeroContent ">
-                        <div class="lineTop ">
-
-                            <h1 class="">
-                                نحرص دائماً على تقديم
-
-                            </h1>
-                        </div>
-                        <div class="lineBottom ">
-
-                            <h1 class=" d-flex gap-12 align-items-center  flex-wrap">
-
-                                أفضل <img src="img/hero/V1.jpg" alt="شاطئ استوائي" loading="eager"> خدمة
-                            </h1>
-                        </div>
-                        <div class="cards d-flex align-items-center gap-12 mt-14">
-                            <div class="card">
-                                <!-- icon -->
-                                <i class="fa-solid fa-paper-plane ps-2"></i>
-                                <!-- h2 -->
-                                <h2> خطة سفر مخصصة</h2>
-                                <!-- p -->
-                                <p>
-                                    نوفر لك أفضل خطة سفر في وقت قصير
-                                    لتستكشف المزيد من الوجهات.
-                                </p>
+                <!-- 6. product preview -->
+                <div class="heroPreview" role="presentation" aria-hidden="true">
+                    <div class="browser">
+                        <!-- browserChrome -->
+                        <div class="browserChrome">
+                            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <div class="urlBar">
+                                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                                madar.sa/dashboard
                             </div>
-                            <div class="card">
-                                <!-- icon -->
-                                <i class="fa-solid fa-paper-plane ps-2"></i>
-                                <!-- h2 -->
-                                <h2> إقامة فاخرة</h2>
-                                <!-- p -->
-                                <p>
-                                    نختار لك أفخم الإقامات لضمان
-                                    تجربة مريحة لا تُنسى.
-                                </p>
+                            <i class="fa-light fa-rotate browserIcon" aria-hidden="true"></i>
+                        </div>
+                        <!-- dashboard -->
+                        <div class="dash">
+                            <!-- side -->
+                            <aside class="dashSide">
+                                <div class="dashLogo">
+                                    <img src="img/logo.png" alt="مدار">
+                                </div>
+                                <nav>
+                                    <a class="active">
+                                        <i class="fa-light fa-route" aria-hidden="true"></i>
+                                        <span>الرحلات</span>
+                                    </a>
+                                    <a>
+                                        <i class="fa-light fa-users" aria-hidden="true"></i>
+                                        <span>المشاركون</span>
+                                    </a>
+                                    <a>
+                                        <i class="fa-light fa-chart-column" aria-hidden="true"></i>
+                                        <span>الإحصائيات</span>
+                                    </a>
+                                    <a>
+                                        <i class="fa-light fa-file-export" aria-hidden="true"></i>
+                                        <span>التقارير</span>
+                                    </a>
+                                </nav>
+                            </aside>
+                            <!-- main -->
+                            <div class="dashMain">
+                                <!-- header -->
+                                <div class="dashHeader">
+                                    <div>
+                                        <h4>رحلاتي</h4>
+                                        <p>متابعة رحلاتك في الوقت الفعلي</p>
+                                    </div>
+                                    <span class="dashSearch">
+                                        <i class="fa-light fa-magnifying-glass" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="dashAvatar">م</span>
+                                </div>
+                                <!-- stats -->
+                                <div class="dashStats">
+                                    <div class="stat">
+                                        <span class="sIcon">
+                                            <i class="fa-light fa-route" aria-hidden="true"></i>
+                                        </span>
+                                        <div><b>12</b><span>رحلة نشطة</span></div>
+                                        <em>+3</em>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="sIcon">
+                                            <i class="fa-light fa-user-check" aria-hidden="true"></i>
+                                        </span>
+                                        <div><b>1,240</b><span>مشارك</span></div>
+                                        <em>96%</em>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="sIcon">
+                                            <i class="fa-light fa-calendar-check" aria-hidden="true"></i>
+                                        </span>
+                                        <div><b>1,190</b><span>تأكيد حضور</span></div>
+                                        <em>تلقائي</em>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="sIcon">
+                                            <i class="fa-light fa-file-export" aria-hidden="true"></i>
+                                        </span>
+                                        <div><b>8</b><span>تقرير جاهز</span></div>
+                                        <em>Excel</em>
+                                    </div>
+                                </div>
+                                <!-- row -->
+                                <div class="dashRow">
+                                    <!-- table -->
+                                    <div class="dashTable">
+                                        <div class="tHead">
+                                            <span>الرحلة</span>
+                                            <span>التسجيل</span>
+                                            <span>الحالة</span>
+                                        </div>
+                                        <div class="tRow">
+                                            <div class="trip">
+                                                <span class="tAvatar">ع</span>
+                                                <div>
+                                                    <b>رحلة العمرة</b>
+                                                    <small>
+                                                        <i class="fa-light fa-location-dot" aria-hidden="true"></i>
+                                                        مكة المكرمة
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="bar"><i style="width:93%"></i></div>
+                                                <span>140 / 150 مسجّل</span>
+                                            </div>
+                                            <span class="status">مستمرة</span>
+                                        </div>
+                                        <div class="tRow">
+                                            <div class="trip">
+                                                <span class="tAvatar">د</span>
+                                                <div>
+                                                    <b>مدار رمضان</b>
+                                                    <small>
+                                                        <i class="fa-light fa-location-dot" aria-hidden="true"></i>
+                                                        مكة المكرمة
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="bar"><i style="width:85%"></i></div>
+                                                <span>85 / 100 مسجّل</span>
+                                            </div>
+                                            <span class="status muted">بانتظار التأكيد</span>
+                                        </div>
+                                        <div class="tRow">
+                                            <div class="trip">
+                                                <span class="tAvatar">أ</span>
+                                                <div>
+                                                    <b>رحلة المدينة</b>
+                                                    <small>
+                                                        <i class="fa-light fa-location-dot" aria-hidden="true"></i>
+                                                        المدينة المنورة
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="bar"><i style="width:45%"></i></div>
+                                                <span>18 / 40 مسجّل</span>
+                                            </div>
+                                            <span class="status muted">مكتملة</span>
+                                        </div>
+                                    </div>
+                                    <!-- chart -->
+                                    <div class="dashChart">
+                                        <h4>التأكيدات هذا الأسبوع</h4>
+                                        <p>حضور مؤكد مقارنة بالاعتذارات</p>
+                                        <div class="bars">
+                                            <i style="height:38%"></i>
+                                            <i style="height:52%"></i>
+                                            <i style="height:45%"></i>
+                                            <i style="height:64%"></i>
+                                            <i style="height:58%"></i>
+                                            <i class="on" style="height:78%"></i>
+                                            <i class="on" style="height:90%"></i>
+                                        </div>
+                                        <div class="legend">
+                                            <span><i></i> حضور مؤكد</span>
+                                            <span class="alt"><i></i> اعتذارات</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!--  -->
             </div>
         </section>
         <!-- Why Choose Us -->
@@ -197,43 +336,176 @@
                     </h2>
                     <!-- 1 -->
                     <div class="whyCard mb-10">
-                        <h3 class="fs-24 split-text">01. استقبال وتوديع كبار الشخصيات</h3>
+                        <h3 class="fs-24 split-text">01. إطلاق خلال دقائق</h3>
                         <p class="pt-4 line-relaxed split-text">
-                            نوفر لك استقبالاً رسمياً وتوديعاً راقياً في مطارات العالم عبر مسارات خاصة وجميع
-                            التسهيلات الممكنة.
+                            أنشئ رحلتك وشارك رابط التسجيل فوراً دون إعدادات معقدة
+                            أو خبرة تقنية مسبقة.
                         </p>
                     </div>
                     <!--  -->
                     <!-- 2 -->
                     <div class="whyCard mb-10">
-                        <h3 class="fs-24 split-text">02. كونسيرج كبار الشخصيات</h3>
+                        <h3 class="fs-24 split-text">02. تجربة مجانية بدون بطاقة</h3>
                         <p class="pt-4 line-relaxed split-text">
-                            فريق كونسيرج متخصص يلبي جميع احتياجاتك من الحجوزات الحصرية إلى الجولات
-                            الخاصة.
+                            جرّب المنصة مجاناً وقم بالترقية عندما تكون جاهزاً —
+                            من دون أي التزام مالي مسبق.
                         </p>
                     </div>
                     <!--  -->
                     <!-- 3 -->
                     <div class="whyCard mb-10">
-                        <h3 class="fs-24 split-text">03. الإقامات الفاخرة</h3>
+                        <h3 class="fs-24 split-text">03. دعم فني متخصص</h3>
                         <p class="pt-4 line-relaxed split-text">
-                            نختار لك أفخم الفنادق والمنتجعات حول العالم لضمان إقامة مريحة وأنيقة في كل
-                            وجهة.
+                            فريق عربي يرافقك خطوة بخطوة من إنشاء الحساب إلى
+                            إدارة رحلاتك وتصدير التقارير.
                         </p>
                     </div>
                     <!--  -->
                 </div>
                 <!-- imgs -->
-                <div class="imgs d-grid grid-col-2 gap-8 relative">
-                    <figure class="subImg ">
-                        <img src="img/hero/H2.jpg" alt="شاطئ استوائي" loading="lazy" class="imgUpDown">
-                    </figure>
-                    <figure class="mainImg absolute top-50 left-50 ">
-                        <img src="img/hero/H1.jpg" alt="منظر سانتوريني" loading="lazy" class="imgDownUp">
-                    </figure>
-                    <figure class="subImg ">
-                        <img src="img/hero/H3.jpg" alt="منتجع فاخر" loading="lazy" class="imgUpDown">
-                    </figure>
+                <div class="imgs relative">
+                    <!-- brand glow -->
+                    <div class="whyGlow" aria-hidden="true"></div>
+
+                    <!-- browser dashboard mockup -->
+                    <div class="whyPreview" role="presentation" aria-hidden="true">
+                        <!-- browserChrome -->
+                        <div class="browserChrome">
+                            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <div class="urlBar">
+                                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                                madar.sa/live
+                            </div>
+                            <i class="fa-light fa-rotate browserIcon" aria-hidden="true"></i>
+                        </div>
+                        <!-- dashboard -->
+                        <div class="dash">
+                            <!-- header -->
+                            <div class="dashHeader">
+                                <div>
+                                    <h4>رحلاتك الآن</h4>
+                                    <p>متابعة فورية لحالة الرحلات والمشاركين</p>
+                                </div>
+                                <span class="live">
+                                    <i aria-hidden="true"></i>
+                                    مباشر
+                                </span>
+                            </div>
+                            <!-- stats -->
+                            <div class="dashStats">
+                                <div class="stat">
+                                    <span class="sIcon">
+                                        <i class="fa-light fa-route" aria-hidden="true"></i>
+                                    </span>
+                                    <div><b>12</b><span>رحلة نشطة</span></div>
+                                    <em>+3</em>
+                                </div>
+                                <div class="stat">
+                                    <span class="sIcon">
+                                        <i class="fa-light fa-user-check" aria-hidden="true"></i>
+                                    </span>
+                                    <div><b>1,240</b><span>مشارك</span></div>
+                                    <em>96%</em>
+                                </div>
+                                <div class="stat">
+                                    <span class="sIcon">
+                                        <i class="fa-light fa-calendar-check" aria-hidden="true"></i>
+                                    </span>
+                                    <div><b>1,190</b><span>تأكيد حضور</span></div>
+                                    <em>تلقائي</em>
+                                </div>
+                            </div>
+                            <!-- chart + trips -->
+                            <div class="dashRow">
+                                <div class="dashChart">
+                                    <h4>التأكيدات هذا الأسبوع</h4>
+                                    <p>حضور مؤكد مقارنة بالاعتذارات</p>
+                                    <div class="bars">
+                                        <i style="height:38%"></i>
+                                        <i style="height:52%"></i>
+                                        <i style="height:45%"></i>
+                                        <i style="height:64%"></i>
+                                        <i style="height:58%"></i>
+                                        <i class="on" style="height:78%"></i>
+                                        <i class="on" style="height:90%"></i>
+                                    </div>
+                                    <div class="legend">
+                                        <span><i></i> حضور مؤكد</span>
+                                        <span class="alt"><i></i> اعتذارات</span>
+                                    </div>
+                                </div>
+                                <div class="dashTable">
+                                    <div class="tHead">
+                                        <span>الرحلة</span>
+                                        <span>الحالة</span>
+                                    </div>
+                                    <div class="tRow">
+                                        <div class="trip">
+                                            <span class="tAvatar">ع</span>
+                                            <div>
+                                                <b>رحلة العمرة</b>
+                                                <small>
+                                                    <i class="fa-light fa-location-dot" aria-hidden="true"></i>
+                                                    مكة المكرمة
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <span class="status">مستمرة</span>
+                                    </div>
+                                    <div class="tRow">
+                                        <div class="trip">
+                                            <span class="tAvatar">د</span>
+                                            <div>
+                                                <b>مدار رمضان</b>
+                                                <small>
+                                                    <i class="fa-light fa-location-dot" aria-hidden="true"></i>
+                                                    مكة المكرمة
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <span class="status muted">بانتظار التأكيد</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- floating feature cards -->
+                    <div class="whyCard-float qr" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-solid fa-qrcode"></i></span>
+                        <div><b>تذاكر QR</b><small>إصدار وفحص فوري</small></div>
+                    </div>
+                    <div class="whyCard-float whatsapp" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-brands fa-whatsapp"></i></span>
+                        <div><b>واتساب بزنس</b><small>تواصل مباشر مع المشاركين</small></div>
+                    </div>
+                    <div class="whyCard-float users" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-light fa-users"></i></span>
+                        <div><b>إدارة المشاركين</b><small>بيانات وجداول في مكان واحد</small></div>
+                    </div>
+                    <div class="whyCard-float bell" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-light fa-bell"></i></span>
+                        <div><b>إشعارات ذكية</b><small>تنبيهات لحظية للتحديثات</small></div>
+                    </div>
+                    <div class="whyCard-float chart" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-light fa-chart-column"></i></span>
+                        <div><b>تقارير وتحليلات</b><small>تصدير Excel وقراءة الأداء</small></div>
+                    </div>
+                    <div class="whyCard-float attendance" aria-hidden="true">
+                        <span class="fIcon"><i class="fa-light fa-user-check"></i></span>
+                        <div><b>تسجيل الحضور</b><small>تأكيد التزام تلقائي</small></div>
+                    </div>
+
+                    <!-- floating stat -->
+                    <div class="whyFloat" aria-hidden="true">
+                        <span class="sIcon">
+                            <i class="fa-light fa-route"></i>
+                        </span>
+                        <div>
+                            <b>12+</b>
+                            <span>رحلة مُدارة في الوقت الفعلي</span>
+                        </div>
+                    </div>
                 </div>
                 <!--  -->
             </div>
@@ -246,52 +518,54 @@
                         إنجازاتنا
                     </span>
                     <h2 class="split-text">
-                        نحرص دائماً على تقديم
-                        أفضل خدمة لكم </h2>
+                        أرقام تتحدث عن ثقة عملائنا بنا
+                    </h2>
                     <p class="des split-text">
-                        نحرص دائماً على إسعاد عملائنا. نوفر جميع وسائل الراحة،
-                        ورضاكم هو أولويتنا الأولى.
+                        أرقام حقيقية من عمليات يومية تُدار على المنصة — من إصدار التذاكر
+                        إلى متابعة الرحلات والتقارير.
                     </p>
                 </div>
                 <div class="d-grid lg:grid-col-4 md:grid-col-2 grid-col-1 lg:gap-14 md:gap-10 gap-7 ">
                     <!-- 1 -->
                     <div class="factCard fadeIn">
                         <figure class="icon w-20 h-20">
-                            <img src="img/shapes/simple-line-icons_calender.svg" class="" alt="أيقونة" loading="lazy">
+                            <img src="img/shapes/simple-line-icons_calender.svg" class="" alt="" loading="lazy">
                         </figure>
                         <!-- icon -->
-                        <h3 class="fs-30 fw-400 my-9">15+</h3>
-                        <p class="fs-16">عاماً من
-                            الخبرة</p>
+                        <h3 class="fs-30 fw-400 my-9">5</h3>
+                        <p class="fs-16">دقائق لإطلاق
+                            رحلتك</p>
                     </div>
                     <!-- 2 -->
                     <div class="factCard fadeIn">
                         <figure class="icon w-20 h-20">
-                            <img src="img/shapes/carbon_map.svg " class="" alt="أيقونة" loading="lazy">
+                            <img src="img/shapes/carbon_map.svg" class="" alt="" loading="lazy">
                         </figure>
                         <!-- icon -->
-                        <h3 class="fs-30 fw-400 my-9">650+</h3>
-                        <p class="fs-16">وجهة حول العالم</p>
+                        <h3 class="fs-30 fw-400 my-9">10+</h3>
+                        <p class="fs-16">رحلات متزامنة
+                            لكل اشتراك</p>
                     </div>
                     <!--  3-->
                     <div class="factCard fadeIn">
                         <figure class="icon w-20 h-20">
-                            <img src="img/shapes/ant-design_bar-chart-outlined.svg " class="" alt="أيقونة"
+                            <img src="img/shapes/ant-design_bar-chart-outlined.svg" class="" alt=""
                                 loading="lazy">
                         </figure>
                         <!-- icon -->
-                        <h3 class="fs-30 fw-400 my-9">50k+</h3>
-                        <p class="fs-16">مسافر
-                            سعيد</p>
+                        <h3 class="fs-30 fw-400 my-9">12,500+</h3>
+                        <p class="fs-16">رحلة
+                            مُدارة</p>
                     </div>
                     <!-- 4 -->
                     <div class="factCard fadeIn">
                         <figure class="icon w-20 h-20">
-                            <img src="img/shapes/gridicons_history.svg " class="" alt="أيقونة" loading="lazy">
+                            <img src="img/shapes/gridicons_history.svg" class="" alt="" loading="lazy">
                         </figure>
                         <!-- icon -->
-                        <h3 class="fs-30 fw-400 my-9">2k+</h3>
-                        <p class="fs-16">مدار منظمة</p>
+                        <h3 class="fs-30 fw-400 my-9">98%</h3>
+                        <p class="fs-16">نسبة رضا
+                            العملاء</p>
                     </div>
                     <!--  -->
                 </div>
@@ -300,135 +574,139 @@
         <!-- Destinations -->
 
         <!-- about -->
-        <section class="about">
+        <section class="about" id="about">
             <div class="container">
                 <div class="d-grid lg:grid-col-2 grid-col-1 gap-manuel align-items-center">
-                    <div class="imgContainer relative ">
-                        <figure class="imgDownUp">
-                            <!-- <img src="img/shapes/cricle.svg" alt="cricle" loading="lazy"> -->
-                            <svg width="532" height="532" viewBox="0 0 532 532" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="cricle">
-                                    <ellipse id="smallCricle" cx="493.782" cy="391.091" rx="35.3455" ry="35.3348"
-                                        fill="url(#paint0_linear_29253_13)" />
-                                    <foreignObject x="-9.87378" y="-9.94531" width="551.747" height="551.587">
-                                        <div xmlns="http://www.w3.org/1999/xhtml"
-                                            style="backdrop-filter:blur(5px);clip-path:url(#bgblur_0_29253_13_clip_path);height:100%;width:100%">
-                                        </div>
-                                    </foreignObject>
-                                    <path id="circle 1" data-figma-bg-blur-radius="10"
-                                        d="M491.874 265.848C491.874 390.539 390.758 491.642 266 491.642C141.242 491.642 40.1262 390.539 40.1262 265.848C40.1262 141.157 141.242 40.0547 266 40.0547C390.758 40.0547 491.874 141.157 491.874 265.848Z"
-                                        stroke="url(#paint1_radial_29253_13)" stroke-width="80" />
-                                    <ellipse id="BigCricle" cx="86.8182" cy="197.241" rx="49.5818" ry="49.5668"
-                                        fill="#FA8443" />
-                                    <foreignObject x="40.7176" y="39.5547" width="450.565" height="450.435">
-                                        <div xmlns="http://www.w3.org/1999/xhtml"
-                                            style="backdrop-filter:blur(5px);clip-path:url(#bgblur_1_29253_13_clip_path);height:100%;width:100%">
-                                        </div>
-                                    </foreignObject>
-                                    <path id="circle 2" data-figma-bg-blur-radius="10"
-                                        d="M451.282 264.772C451.282 367.056 368.337 449.99 266 449.99C163.663 449.99 80.7176 367.056 80.7176 264.772C80.7176 162.488 163.663 79.5547 266 79.5547C368.337 79.5547 451.282 162.488 451.282 264.772Z"
-                                        stroke="url(#paint2_radial_29253_13)" stroke-width="60" />
-                                    <path id="circle 3"
-                                        d="M398.226 264.771C398.226 337.757 339.038 396.945 266 396.945C192.962 396.945 133.774 337.757 133.774 264.771C133.774 191.785 192.962 132.597 266 132.597C339.038 132.597 398.226 191.785 398.226 264.771Z"
-                                        stroke="url(#paint3_radial_29253_13)" stroke-width="80" />
-                                </g>
-                                <defs>
-                                    <clipPath id="bgblur_0_29253_13_clip_path" transform="translate(9.87378 9.94531)">
-                                        <path
-                                            d="M491.874 265.848C491.874 390.539 390.758 491.642 266 491.642C141.242 491.642 40.1262 390.539 40.1262 265.848C40.1262 141.157 141.242 40.0547 266 40.0547C390.758 40.0547 491.874 141.157 491.874 265.848Z" />
-                                    </clipPath>
-                                    <clipPath id="bgblur_1_29253_13_clip_path" transform="translate(-40.7176 -39.5547)">
-                                        <path
-                                            d="M451.282 264.772C451.282 367.056 368.337 449.99 266 449.99C163.663 449.99 80.7176 367.056 80.7176 264.772C80.7176 162.488 163.663 79.5547 266 79.5547C368.337 79.5547 451.282 162.488 451.282 264.772Z" />
-                                    </clipPath>
-                                    <linearGradient id="paint0_linear_29253_13" x1="529.127" y1="426.426" x2="458.458"
-                                        y2="355.735" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#FB8444" />
-                                        <stop offset="0.750282" stop-color="#FFCAAD" />
-                                    </linearGradient>
-                                    <radialGradient id="paint1_radial_29253_13" cx="0" cy="0" r="1"
-                                        gradientUnits="userSpaceOnUse"
-                                        gradientTransform="translate(258.522 277.477) rotate(88.7893) scale(353.917 354.023)">
-                                        <stop offset="0.654764" stop-color="#FFDAC6" stop-opacity="0.36" />
-                                        <stop offset="1" stop-color="#FB8747" stop-opacity="0.84" />
-                                    </radialGradient>
-                                    <radialGradient id="paint2_radial_29253_13" cx="0" cy="0" r="1"
-                                        gradientUnits="userSpaceOnUse"
-                                        gradientTransform="translate(259.945 274.188) rotate(88.7893) scale(286.572 286.659)">
-                                        <stop offset="0.654764" stop-color="#FFDAC6" stop-opacity="0.36" />
-                                        <stop offset="1" stop-color="#FB8747" stop-opacity="0.84" />
-                                    </radialGradient>
-                                    <radialGradient id="paint3_radial_29253_13" cx="0" cy="0" r="1"
-                                        gradientUnits="userSpaceOnUse"
-                                        gradientTransform="translate(261.156 272.303) rotate(88.7893) scale(229.258 229.327)">
-                                        <stop offset="0.654764" stop-color="#FFDAC6" stop-opacity="0.36" />
-                                        <stop offset="1" stop-color="#FB8747" stop-opacity="0.84" />
-                                    </radialGradient>
-                                </defs>
-                            </svg>
-                        </figure>
-                        <figure class="absolute modelImage  left-50">
-                            <img src="img/model.png" alt="مرشد سياحي" loading="lazy" class="fadeIn">
-                        </figure>
-                        <!-- shapes -->
-                        <div class="shapes_cards w-full h-full absolute ">
-                            <div class="largeCard p-4 round-6 fadeIn">
-                                <figure class="round-2">
-                                    <img src="img/egypt.jpg" alt="المالديف" loading="lazy" class="round-2">
-                                </figure>
-                                <!--  -->
-                                <h3 class="uppercase fs-18 py-3">المالديف</h3>
-                                <!--  -->
-                                <p class="fs-14 d-flex align-items-center gap-4">
-                                    <i class="fa-light fa-location-dot fs-12"></i>
-                                    <small>المالديف</small>
-                                </p>
+                    <!-- product showcase -->
+                    <div class="aboutShowcase relative">
+                        <span class="showcaseGlow" aria-hidden="true"></span>
+                        <!-- browser dashboard mockup -->
+                        <div class="browserMock" aria-hidden="true">
+                            <div class="browserMockChrome">
+                                <span class="dots"><i></i><i></i><i></i></span>
+                                <div class="urlBar">
+                                    <i class="fa-solid fa-lock"></i>
+                                    madar.sa/dashboard
+                                </div>
+                                <i class="fa-light fa-rotate browserIcon"></i>
                             </div>
-                            <!--  -->
-                            <div class="smallCard p-4 round-6 fadeIn">
-                                <figure class="round-2">
-                                    <img src="img/places/dubai-thumb.jpg" alt="دبي" loading="lazy"
-                                        class="round-2 img-cover">
-                                </figure>
-                                <!--  -->
-                                <h3 class="uppercase fs-16 py-2">دبي</h3>
-                                <!--  -->
-                                <p class="fs-14 d-flex align-items-center gap-4">
-                                    <i class="fa-light fa-location-dot fs-12"></i>
-                                    <small>دبي</small>
-                                </p>
+                            <div class="mockDash">
+                                <aside class="mockSide">
+                                    <div class="mockLogo">
+                                        <img src="img/logo.png" alt="مدار" loading="lazy">
+                                    </div>
+                                    <nav>
+                                        <a class="active">
+                                            <i class="fa-light fa-route"></i>
+                                            <span>الرحلات</span>
+                                        </a>
+                                        <a>
+                                            <i class="fa-light fa-users"></i>
+                                            <span>المشاركون</span>
+                                        </a>
+                                        <a>
+                                            <i class="fa-light fa-chart-column"></i>
+                                            <span>التقارير</span>
+                                        </a>
+                                    </nav>
+                                </aside>
+                                <div class="mockMain">
+                                    <div class="mockHeader">
+                                        <div>
+                                            <h4>رحلاتي</h4>
+                                            <p>متابعة رحلاتك في الوقت الفعلي</p>
+                                        </div>
+                                        <span class="mockAvatar">م</span>
+                                    </div>
+                                    <div class="mockStats">
+                                        <div class="mockStat">
+                                            <span class="sIcon"><i class="fa-light fa-qrcode"></i></span>
+                                            <div><b>48K</b><span>تذكرة QR</span></div>
+                                        </div>
+                                        <div class="mockStat">
+                                            <span class="sIcon"><i class="fa-light fa-user-check"></i></span>
+                                            <div><b>96%</b><span>حضور مؤكد</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="mockList">
+                                        <div class="mockTrip">
+                                            <span class="tAvatar">ع</span>
+                                            <div>
+                                                <b>رحلة العمرة</b>
+                                                <small><i class="fa-light fa-location-dot"></i> مكة المكرمة</small>
+                                            </div>
+                                            <span class="status">مستمرة</span>
+                                        </div>
+                                        <div class="mockTrip">
+                                            <span class="tAvatar">م</span>
+                                            <div>
+                                                <b>مدار المدينة</b>
+                                                <small><i class="fa-light fa-location-dot"></i> المدينة المنورة</small>
+                                            </div>
+                                            <span class="status muted">بانتظار التأكيد</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
+                        </div>
+                        <!-- phone preview -->
+                        <div class="phoneMock" aria-hidden="true">
+                            <div class="phoneScreen">
+                                <div class="phoneHeader">
+                                    <span class="phoneLogo"><img src="img/logo.png" alt="" loading="lazy"></span>
+                                    <b>رحلة العمرة</b>
+                                </div>
+                                <div class="phoneQr">
+                                    <i class="fa-solid fa-qrcode"></i>
+                                </div>
+                                <p>عرض تذكرة QR</p>
+                            </div>
+                        </div>
+                        <!-- floating feature cards -->
+                        <div class="floatCard fcQr" aria-hidden="true">
+                            <i class="fa-light fa-qrcode"></i>
+                            <div><b>تذكرة QR</b><small>حضور فوري</small></div>
+                        </div>
+                        <div class="floatCard fcWa" aria-hidden="true">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <div><b>واتساب</b><small>إشعار تلقائي</small></div>
                         </div>
                     </div>
-                    <div class="aboutContent w-full ">
-                        <div class="mainHeading ">
-                            <span class="tag split-text">
-                                تجربتنا
-                            </span>
-                            <h2 class="split-text">
-                                قصصنا مليئة بالمغامرات </h2>
+                    <!-- about content -->
+                    <div class="aboutContent w-full">
+                        <div class="mainHeading">
+                            <span class="tag split-text">منصة مدار</span>
+                            <h2 class="split-text">منصة واحدة لإدارة جميع رحلات العمرة</h2>
                             <p class="des split-text">
-                                نمتلك خبرة طويلة في صناعة مغامرات لا تُنسى لعملائنا، ووجهات العالم الخارجية
-                                هي مجال تخصصنا. ابدأ مغامرتك الآن، لقد نادتك الطبيعة!
+                                أنشئ رحلتك خلال دقائق، وأصدر تذاكر QR، وتابع حضور المشاركين تلقائياً،
+                                واستخرج التقارير — كل ذلك من مكان واحد على السحابة.
                             </p>
                         </div>
-                        <div class="aboutCards d-grid gap-10 lg:grid-col-3 md:grid-col-2 grid-col-1 mt-10">
-                            <div class="card border-1 border-solid p-6 round-6 text-center fadeIn">
-                                <h3 class="fs-48 pb-4 split-text">12K+</h3>
-                                <!--  -->
-                                <p class="fs-20 split-text">مدار ناجحة</p>
+                        <!-- feature chips -->
+                        <div class="featureChips d-flex flex-wrap justify-center gap-7 mt-12">
+                            <span class="featureChip"><i class="fa-solid fa-check"></i>تذاكر QR</span>
+                            <span class="featureChip"><i class="fa-solid fa-check"></i>متابعة الحضور</span>
+                            <span class="featureChip"><i class="fa-solid fa-check"></i>التقارير</span>
+                            <span class="featureChip"><i class="fa-solid fa-check"></i>إدارة الركاب</span>
+                            <span class="featureChip"><i class="fa-solid fa-check"></i>واتساب</span>
+                        </div>
+                        <!-- SaaS KPIs -->
+                        <div class="aboutStats d-grid grid-col-2 gap-10 mt-14">
+                            <div class="aboutStat fadeIn">
+                                <b>99.9%</b>
+                                <span>جاهزية المنصة</span>
                             </div>
-                            <div class="card border-1 border-solid p-6 round-6 text-center fadeIn">
-                                <h3 class="fs-48 pb-4 split-text">16+</h3>
-                                <!--  -->
-                                <p class="fs-20 split-text">جائزة عالمية</p>
+                            <div class="aboutStat fadeIn">
+                                <b>+50K</b>
+                                <span>تذكرة QR</span>
                             </div>
-                            <div class="card border-1 border-solid p-6 round-6 text-center fadeIn">
-                                <h3 class="fs-48 pb-4 split-text">20+</h3>
-                                <!--  -->
-                                <p class="fs-20 split-text">عاماً من الخبرة</p>
+                            <div class="aboutStat fadeIn">
+                                <b>+12K</b>
+                                <span>رحلة مُدارة</span>
+                            </div>
+                            <div class="aboutStat fadeIn">
+                                <b>24/7</b>
+                                <span>دعم فني</span>
                             </div>
                         </div>
                     </div>
@@ -436,114 +714,7 @@
             </div>
         </section>
         <!-- Enjoy -->
-        <section class="Enjoy">
-            <div class="container relative">
-                <div class="mainHeading ">
-                    <span class="tag split-text">
-                        استمتع
-                    </span>
-                    <h2 class="split-text">
-                        استمتع بعطلة أحلامك</h2>
-                    <p class="des split-text">
-                        نمتلك خبرة طويلة في صناعة مغامرات لا تُنسى لعملائنا، ووجهات العالم الخارجية
-                        هي مجال تخصصنا.
-                    </p>
-                </div>
-                <div class="filter d-grid grid-manuel gap-14 fadeIn">
-                    <!-- Facilities -->
-                    <div class="filterCard lg-max:d-none">
-                        <h3>المرافق</h3>
-                        <div class="cards d-flex align-items-center justify-between flex-wrap">
-                            <!-- 1 -->
-                            <div class="card">
-                                <figure>
-                                    <img src="img/shapes/Group 120.svg" alt="مسابح" loading="lazy">
-                                </figure>
-                                <p>مسابح</p>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card">
-                                <figure>
-                                    <img src="img/shapes/Vector-1.svg" alt="واي فاي" loading="lazy">
-                                </figure>
-                                <p>واي فاي</p>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card">
-                                <figure>
-                                    <img src="img/shapes/Vector.svg" alt="تكييف" loading="lazy">
-                                </figure>
-                                <p>تكييف</p>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card">
-                                <figure>
-                                    <img src="img/shapes/Group 121.svg" alt="عشاء فاخر" loading="lazy">
-                                </figure>
-                                <p>عشاء فاخر</p>
-                            </div>
-                            <!--  -->
-                        </div>
-                    </div>
-                    <!-- Hotels -->
-                    <div class="filterCard">
-                        <h3>فنادق تناسبك</h3>
-                        <div class="cards d-flex align-items-start mt-12 flex-col gap-8">
-                            <!-- 1 -->
-                            <p class="fs-18">5 أيام 6 ليالٍ</p>
-                            <button type="button" class="btn btn-rounded btn-icon">
-
-                                <span class="fw-700">
-                                    <i class="fa-light fa-clock fs-14 "></i>
-                                    $4000
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- form -->
-                    <div class="filterCard">
-                        <form action="#!">
-                            <div class="formGroup relative">
-                                <input type="search" placeholder="ابحث عن وجهتك..." class="form-control"
-                                    id="searchInput" name="searchInput">
-                                <label for="searchInput">
-                                    <i class="fa-light fa-magnifying-glass"></i>
-                                </label>
-                            </div>
-                        </form>
-                        <div class="cards d-flex align-items-center  mt-12">
-                            <!-- 1 -->
-                            <div class="card cricle">
-                                <figure class="round-cricle">
-                                    <img src="img/model-1.webp" alt="عميل" loading="lazy"
-                                        class="img-cover round-cricle">
-                                </figure>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card cricle">
-                                <figure class="round-cricle">
-                                    <img src="img/model-1.webp" alt="عميل" loading="lazy"
-                                        class="img-cover round-cricle">
-                                </figure>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card cricle">
-                                <figure class="round-cricle">
-                                    <img src="img/model-1.webp" alt="عميل" loading="lazy"
-                                        class="img-cover round-cricle">
-                                </figure>
-                            </div>
-                            <!-- 1 -->
-                            <div class="card cricle">
-                                <figure class="round-cricle d-flex align-items-center justify-center">
-                                    <figcaption class="fw-700 fs-20 text-center">+5</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!-- Package -->
         <section class="CommonFeatures ">
             <div class="container">
@@ -603,8 +774,8 @@
                     </article>
                 </div>
                 <div class="ctaWrap d-flex justify-center mt-12">
-                    <a href="contact.html" class="btn btn-rounded">
-                        احجز رحلتك الآن
+                    <a href="#contact" class="btn btn-rounded">
+                        ابدأ الآن
                         <i class="fa-solid fa-paper-plane ps-2" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -624,7 +795,22 @@
                         متكامل طوال فترة الاشتراك وإمكانية إضافة رحلات إضافية في أي وقت.
                     </p>
                 </div>
-                <div class="d-grid lg:grid-col-3 md:grid-col-2 grid-col-1 gap-10">
+                <div class="pricingSwitchWrap">
+                    <div class="pricingSwitch" role="tablist" aria-label="نوع الاشتراك">
+                        <button type="button" class="pricingSwitch-btn is-active" id="tab-companies" role="tab"
+                            aria-selected="true" aria-controls="pricingPanel" data-category="companies">
+                            <i class="fa-solid fa-building" aria-hidden="true"></i>
+                            <span>الشركات الربحية</span>
+                        </button>
+                        <button type="button" class="pricingSwitch-btn" id="tab-charities" role="tab"
+                            aria-selected="false" aria-controls="pricingPanel" data-category="charities" tabindex="-1">
+                            <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+                            <span>الجمعيات الخيرية</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="pricingPanel" role="tabpanel" aria-labelledby="tab-companies">
+                    <div id="pricingGrid" class="d-grid lg:grid-col-3 md:grid-col-2 grid-col-1 gap-10">
                     <!-- 1 -->
                     <article class="priceCard fadeIn">
                         <div class="cardHead">
@@ -642,10 +828,6 @@
                             <span class="amount fs-48 fw-800">400</span>
                             <span class="currency fs-16">ريال / 3 أشهر</span>
                         </div>
-                        <p class="charity fs-14">
-                            للجمعيات الخيرية: <strong>200 ريال</strong>
-                            <span class="badge fs-12">مجاني مؤقتاً</span>
-                        </p>
                         <ul class="features">
                             <li>
                                 <i class="fa-solid fa-check" aria-hidden="true"></i>
@@ -691,9 +873,6 @@
                             <span class="amount fs-48 fw-800">700</span>
                             <span class="currency fs-16">ريال / 6 أشهر</span>
                         </div>
-                        <p class="charity fs-14">
-                            للجمعيات الخيرية: <strong>350 ريال</strong>
-                        </p>
                         <ul class="features">
                             <li>
                                 <i class="fa-solid fa-check" aria-hidden="true"></i>
@@ -727,7 +906,7 @@
                             <h3 class="fs-24">باقة 12 شهر</h3>
                             <p class="trips fs-16">
                                 <i class="fa-light fa-route" aria-hidden="true"></i>
-                                <span>22 مدار</span>
+                                <span>22 رحلة</span>
                             </p>
                         </div>
                         <p class="desc fs-16">
@@ -738,9 +917,6 @@
                             <span class="amount fs-48 fw-800">1200</span>
                             <span class="currency fs-16">ريال / 12 شهر</span>
                         </div>
-                        <p class="charity fs-14">
-                            للجمعيات الخيرية: <strong>600 ريال</strong>
-                        </p>
                         <ul class="features">
                             <li>
                                 <i class="fa-solid fa-check" aria-hidden="true"></i>
@@ -769,6 +945,7 @@
                         </a>
                     </article>
                 </div>
+                    </div>
                 <p class="extraTrips fadeIn fs-16">
                     <i class="fa-light fa-circle-plus" aria-hidden="true"></i>
                     يمكن إضافة <strong>رحلات إضافية</strong> على أي اشتراك بسعر
@@ -847,7 +1024,7 @@
             </div>
         </section>
         <!-- Core Features -->
-        <section class="coreFeatures">
+        <section class="coreFeatures" id="features">
             <div class="container">
                 <div class="mainHeading center">
                     <span class="tag split-text">
@@ -959,7 +1136,7 @@
             </div>
         </section>
         <!-- How it works / User guide -->
-        <section class="howItWorks">
+        <section class="howItWorks" id="guide">
             <div class="container">
                 <div class="mainHeading center">
                     <span class="tag split-text">
@@ -1039,62 +1216,73 @@
                         متطلبات بسيطة تضمن تجربة موثوقة لجهتكم، اجمعها وابدأ رحلتك معنا.
                     </p>
                 </div>
-                <div class="d-grid lg:grid-col-5 md:grid-col-3 grid-col-1 gap-10">
+                <ol class="reqGrid d-grid lg:grid-col-5 md:grid-col-3 grid-col-1 gap-10">
                     <!-- 1 -->
-                    <article class="reqCard fadeIn">
+                    <li class="reqCard fadeIn">
                         <span class="reqNum">1</span>
                         <span class="icon" aria-hidden="true">
                             <i class="fa-light fa-id-card"></i>
                         </span>
+                        <span class="reqStep">الخطوة الأولى</span>
                         <h3 class="fs-24">ترخيص رسمي ساري</h3>
-                        <p class="fs-16">من الجهة المشرفة على نشاط جهتكم.</p>
-                    </article>
+                        <p class="fs-16">وجود ترخيص أو سجل نظامي ساري يثبت نشاط الجهة.</p>
+                    </li>
                     <!-- 2 -->
-                    <article class="reqCard fadeIn">
+                    <li class="reqCard fadeIn">
                         <span class="reqNum">2</span>
                         <span class="icon" aria-hidden="true">
                             <i class="fa-light fa-file-signature"></i>
                         </span>
-                        <h3 class="fs-24">تفويض على ورق رسمي</h3>
-                        <p class="fs-16">للمشرف المفوض: الاسم، السجل المدني، والجوال.</p>
-                    </article>
+                        <span class="reqStep">الخطوة الثانية</span>
+                        <h3 class="fs-24">تفويض المشرف</h3>
+                        <p class="fs-16">تحديد شخص مسؤول عن إدارة الحساب مع بياناته الرسمية.</p>
+                    </li>
                     <!-- 3 -->
-                    <article class="reqCard fadeIn">
+                    <li class="reqCard fadeIn">
                         <span class="reqNum">3</span>
                         <span class="icon" aria-hidden="true">
                             <i class="fa-light fa-user-check"></i>
                         </span>
-                        <h3 class="fs-24">تحمّل المسؤولية</h3>
-                        <p class="fs-16">يتحمل المشرف المفوض مسؤولية إدارة الموقع.</p>
-                    </article>
+                        <span class="reqStep">الخطوة الثالثة</span>
+                        <h3 class="fs-24">إقرار المسؤولية</h3>
+                        <p class="fs-16">إقرار بالموافقة على مسؤولية إدارة الرحلات والبيانات.</p>
+                    </li>
                     <!-- 4 -->
-                    <article class="reqCard fadeIn">
+                    <li class="reqCard fadeIn">
                         <span class="reqNum">4</span>
                         <span class="icon" aria-hidden="true">
                             <i class="fa-light fa-credit-card"></i>
                         </span>
-                        <h3 class="fs-24">تحويل رسوم الاشتراك</h3>
-                        <p class="fs-16">وفق الباقة المختارة بعد إتمام الطلب.</p>
-                    </article>
+                        <span class="reqStep">الخطوة الرابعة</span>
+                        <h3 class="fs-24">سداد رسوم الاشتراك</h3>
+                        <p class="fs-16">اختيار الباقة المناسبة وإتمام عملية الدفع بأمان.</p>
+                    </li>
                     <!-- 5 -->
-                    <article class="reqCard fadeIn">
+                    <li class="reqCard fadeIn">
                         <span class="reqNum">5</span>
                         <span class="icon" aria-hidden="true">
                             <i class="fa-light fa-image"></i>
                         </span>
-                        <h3 class="fs-24">إرسال شعار الجهة</h3>
-                        <p class="fs-16">صورة شعار الشركة أو الجمعية إن وجد.</p>
-                    </article>
-                </div>
+                        <span class="reqStep">الخطوة الخامسة</span>
+                        <h3 class="fs-24">رفع شعار الجهة</h3>
+                        <p class="fs-16">رفع شعار الشركة أو الجمعية ليظهر في التذاكر والتقارير.</p>
+                    </li>
+                </ol>
                 <p class="note fadeIn fs-16">
                     <i class="fa-light fa-note-sticky" aria-hidden="true"></i>
                     يُطبع التفويض على ورق رسمي يوافق الترخيص أو السجل التجاري.
                 </p>
-                <div class="ctaWrap d-flex justify-center mt-12">
-                    <a href="https://Madar.sa/word/تفويض%20مشرف%20لموقع%20مدار.docx" class="btn btn-rounded">
-                        تحميل نموذج التفويض
-                        <i class="fa-solid fa-download ps-2" aria-hidden="true"></i>
-                    </a>
+                <div class="reqCta">
+                    <p class="reqCtaHint fadeIn fs-16">
+                        <i class="fa-light fa-circle-info" aria-hidden="true"></i>
+                        أرسل النموذج مرفقاً مع طلب الاشتراك لتوثيق صلاحية المشرف على الحساب.
+                    </p>
+                    <div class="ctaWrap d-flex justify-center mt-12">
+                        <a href="https://Madar.sa/word/تفويض%20مشرف%20لموقع%20مدار.docx" class="btn btn-rounded">
+                            تحميل نموذج التفويض
+                            <i class="fa-solid fa-download ps-2" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1108,7 +1296,7 @@
                     <h2 class="split-text">
                         ماذا يقول عملاؤنا</h2>
                     <p class="des split-text">
-                        آراء حقيقية من مسافرينا حول تجربتهم الفاخرة مع مدار. </p>
+                        آراء من عملائنا حول تجربتهم مع مدار في إدارة رحلاتهم ومتابعة المشاركين. </p>
                 </div>
                 <!-- swiper -->
                 <div class="swiper mySwiper fadeIn">
@@ -1116,16 +1304,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="عبدالله السالم" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-solid" aria-hidden="true">ع</figure>
                                     <h3 class="fs-20">عبدالله السالم</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    سافرت مع مدار إلى جزر المالديف وكانت
-                                    تجربة استثنائية، كل التفاصيل كانت
-                                    مثالية والخدمة راقية جداً.
+                                    نظام تأكيد الحضور وفّر علينا ساعات من
+                                    المتابعة اليدوية، والجميع وصل في الموعد
+                                    دون أي اتصال هاتفي.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1140,16 +1325,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="سارة العتيبي" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-light" aria-hidden="true">س</figure>
                                     <h3 class="fs-20">سارة العتيبي</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    أفضل وكالة سفر تعاملت معها، باقة
-                                    شهر العسل كانت حلماً أصبح حقيقة،
-                                    شكراً لفريق مدار الرائع.
+                                    أصبحنا نُصدر تذاكر QR ونتابع المشاركين
+                                    من لوحة واحدة، تجربة سهلة حتى لأقل
+                                    الفريق خبرة.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1164,16 +1346,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="خالد المطيري" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-solid" aria-hidden="true">خ</figure>
                                     <h3 class="fs-20">خالد المطيري</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    خدمة كونسيرج مميزة بكل معنى الكلمة،
-                                    رتّبوا لي كل شيء بدقة واحترافية
-                                    لا تُضاهى.
+                                    التقارير بصيغة Excel وفّرت علينا وقت
+                                    الاعتماد والمطابقة، وبيانات دقيقة
+                                    دائماً دون أخطاء.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1188,16 +1367,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="نورة القحطاني" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-light" aria-hidden="true">ن</figure>
                                     <h3 class="fs-20">نورة القحطاني</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    استقبال وتوديع كبار الشخصيات في
-                                    المطار كان راقياً جداً، تعامل أنيق
-                                    يليق باسم مدار.
+                                    رابط التسجيل الخاص بكل رحلة سهّل علينا
+                                    جمع بيانات المستفيدين خلال يوم
+                                    واحد فقط.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1212,16 +1388,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="محمد العبدالله" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-solid" aria-hidden="true">م</figure>
                                     <h3 class="fs-20">محمد العبدالله</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    خططوا لي مدار إلى باريس بأدق التفاصيل،
-                                    من الفنادق إلى المطاعم، تجربة
-                                    فاخرة سأكررها بالتأكيد.
+                                    دعم الفريق العربي رافقنا خطوة بخطوة
+                                    من إنشاء الحساب حتى أول رحلة
+                                    مُدارة بالكامل.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1236,16 +1409,13 @@
                         <div class="swiper-slide">
                             <div class="clientCard p-10 round-6">
                                 <div class="clientInfo d-flex align-items-center gap-7 ">
-                                    <figure class="w-32 h-32 round-cricle">
-                                        <img src="img/model-1.webp" alt="ريم الشهري" loading="lazy"
-                                            class=" round-cricle">
-                                    </figure>
+                                    <figure class="clientAvatar ca-light" aria-hidden="true">ر</figure>
                                     <h3 class="fs-20">ريم الشهري</h3>
                                 </div>
                                 <p class="comment my-9 line-relaxed">
-                                    اهتمامهم بالتفاصيل وأسلوبهم الاحترافي
-                                    جعلا رحلتي إلى كيوتو لا تُنسى،
-                                    أنصح بهم بشدة.
+                                    لوحة الإحصائيات الحية تعطينا صورة
+                                    واضحة عن كل رحلة، ونتيجة العمل
+                                    أصبحت أفضل بكثير.
                                 </p>
                                 <div class="rate">
                                     <i class="fa-solid fa-star"></i>
@@ -1266,19 +1436,8 @@
         <!-- Login / CTA band -->
         <section class="ctaBand">
             <div class="container">
-                <div class="d-grid lg:grid-col-2 grid-col-1 lg:gap-14 md:gap-10 gap-10">
-                    <!-- 1 -->
-                    <div class="bandCard fadeIn">
-                        <h2>لديك حساب؟</h2>
-                        <p>
-                            سجّل دخولك للوصول إلى لوحة التحكم وإدارة رحلاتك
-                            في أي وقت ومن أي جهاز.
-                        </p>
-                        <a href="https://Madar.sa/Auth/Login" class="btn btn-rounded">
-                            تسجيل الدخول
-                            <i class="fa-solid fa-arrow-left ps-2" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <div class="d-grid lg:grid-col-1 grid-col-1 lg:gap-14 md:gap-10 gap-10">
+                   
                     <!-- 2 -->
                     <div class="bandCard fadeIn">
                         <h2>ليس لديك حساب؟</h2>
@@ -1295,7 +1454,7 @@
             </div>
         </section>
         <!-- Contact / inquiry -->
-        <section class="contact">
+        <section class="contact" id="contact">
             <div class="container">
                 <div class="mainHeading center">
                     <span class="tag split-text">
@@ -1342,11 +1501,11 @@
                             <i class="fa-light fa-envelope"></i>
                         </span>
                         <h3>البريد الإلكتروني</h3>
-                        <p class="value" dir="ltr">info@Madar.sa</p>
+                        <p class="value" dir="ltr">info@madar.sa</p>
                         <p>
                             أرسل لنا استفسارك وسنرد عليك خلال ساعات العمل.
                         </p>
-                        <a href="mailto:info@Madar.sa" class="btn btn-rounded">
+                        <a href="mailto:info@madar.sa" class="btn btn-rounded">
                             أرسل رسالة
                             <i class="fa-solid fa-paper-plane ps-2" aria-hidden="true"></i>
                         </a>
@@ -1362,57 +1521,49 @@
                         <img src="img/logo.png" alt="مدار" loading="lazy">
                     </figure>
                     <p class="line-relaxed my-9">
-                        مدار هي وجهتك الأولى للسفر الفاخر وخدمات الضيافة الراقية،
-                        نقدم باقات حصرية وإقامات فاخرة وخدمات كونسيرج كبار الشخصيات
-                        لنصنع معك ذكريات لا تُنسى.
+                        مدار منصة عربية متخصصة لإدارة رحلات العمرة والمؤسسات —
+                        أنشئ رحلتك، اجمع بيانات المشاركين، وتابع الحضور والتقارير
+                        من مكان واحد على السحابة.
                     </p>
                     <menu class="socialLinks d-flex align-items-center gap-7 flex-wrap">
                         <li>
-                            <button type="button" class="btn btn-rounded btn-icon isBorder">
-                                <a href="#!">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-                            </button>
+                            <a href="#!" class="btn btn-rounded btn-icon isBorder" aria-label="فيسبوك">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-rounded btn-icon isBorder">
-                                <a href="#!">
-                                    <i class="fa-brands fa-twitter"></i>
-                                </a>
-                            </button>
+                            <a href="#!" class="btn btn-rounded btn-icon isBorder" aria-label="إكس">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-rounded btn-icon isBorder">
-                                <a href="#!">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </a>
-                            </button>
+                            <a href="#!" class="btn btn-rounded btn-icon isBorder" aria-label="إنستغرام">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-rounded btn-icon isBorder">
-                                <a href="#!">
-                                    <i class="fa-brands fa-tiktok"></i>
-                                </a>
-                            </button>
+                            <a href="#!" class="btn btn-rounded btn-icon isBorder" aria-label="تيك توك">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
                         </li>
                     </menu>
                 </div>
                 <div class="footerLinks">
                     <h3>روابط سريعة</h3>
                     <ul class="d-flex flex-col gap-10">
-                        <li><a href="#">الرئيسية</a></li>
-                        <li><a href="#">من نحن</a></li>
-                        <li><a href="#">خدماتنا</a></li>
-                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#features">خدماتنا</a></li>
+                        <li><a href="#guide">دليل الاستخدام</a></li>
                     </ul>
                 </div>
                 <div class="footerLinks">
                     <h3>تواصل معنا</h3>
                     <ul class="d-flex flex-col gap-10">
                         <li>
-                            <a href="mailto:info@Madar.sa" class="d-flex align-items-center gap-3">
+                            <a href="mailto:info@madar.sa" class="d-flex align-items-center gap-3">
                                 <i class="fa-light fa-envelope"></i>
-                                info@Madar.sa
+                                info@madar.sa
                             </a>
                         </li>
                         <li>
@@ -1442,14 +1593,10 @@
             </div>
             <div class="copyRight border-t-1 border-t-solid">
                 <p>
-                    © 2025 مدار. جميع الحقوق محفوظة.
+                    © 2026 مدار. جميع الحقوق محفوظة.
                 </p>
             </div>
         </footer>
-        <!-- (((((((((((intro)))))))))) -->
-        <figure class="intro">
-            <img src="img/plane.png" alt="طائرة" loading="eager" class="img-cover ">
-        </figure>
     </main>
     <!-- ===================================
      ==================end page content========================
@@ -1463,7 +1610,7 @@
     <!-- SplitText -->
     <script src="js/SplitText.min.js"></script>
     <!-- lenis -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@latest/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <!-- swiper -->
     <script src="js/swiper.js"></script>
     <!-- main -->
