@@ -50,121 +50,121 @@ gsap.ticker.lagSmoothing(0);
 // =====================================================
 // Smooth scroll navigation (Lenis-powered)
 // =====================================================
-(function () {
-  const scrollLinks = Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]'));
-  const spySections = document.querySelectorAll('section[id]');
-  const navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link[href^="#"]'));
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// (function () {
+//   const scrollLinks = Array.prototype.slice.call(document.querySelectorAll('a[href^="#"]'));
+//   const spySections = document.querySelectorAll('section[id]');
+//   const navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link[href^="#"]'));
+//   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Mirror the CSS `scroll-margin-top` so the Lenis path and the native
-  // fallback (no-JS) land on the exact same spot.
-  function targetOffset(target) {
-    const value = parseFloat(window.getComputedStyle(target).scrollMarginTop);
-    return Number.isFinite(value) ? value : 0;
-  }
+//   // Mirror the CSS `scroll-margin-top` so the Lenis path and the native
+//   // fallback (no-JS) land on the exact same spot.
+//   function targetOffset(target) {
+//     const value = parseFloat(window.getComputedStyle(target).scrollMarginTop);
+//     return Number.isFinite(value) ? value : 0;
+//   }
 
-  function getTarget(hash) {
-    if (!hash || hash.length < 2 || hash.indexOf('#!') === 0) return null;
-    try {
-      return document.querySelector(hash);
-    } catch (e) {
-      return null;
-    }
-  }
+//   function getTarget(hash) {
+//     if (!hash || hash.length < 2 || hash.indexOf('#!') === 0) return null;
+//     try {
+//       return document.querySelector(hash);
+//     } catch (e) {
+//       return null;
+//     }
+//   }
 
-  function scrollToTarget(hash, immediate) {
-    const target = getTarget(hash);
-    if (!target) return;
-    lenis.scrollTo(target, {
-      offset: -targetOffset(target),
-      immediate: immediate || reduceMotion,
-    });
-    return target;
-  }
+//   function scrollToTarget(hash, immediate) {
+//     const target = getTarget(hash);
+//     if (!target) return;
+//     lenis.scrollTo(target, {
+//       offset: -targetOffset(target),
+//       immediate: immediate || reduceMotion,
+//     });
+//     return target;
+//   }
 
-  function setActiveNav(hash) {
-    navLinks.forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === hash);
-    });
-  }
+//   function setActiveNav(hash) {
+//     navLinks.forEach((link) => {
+//       link.classList.toggle('active', link.getAttribute('href') === hash);
+//     });
+//   }
 
-  // 1) Clicking an anchor link → prevent the native jump, push history so
-  //    Back/Forward works, animate with Lenis and close the mobile popover.
-  scrollLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const hash = link.getAttribute('href');
-      const target = getTarget(hash);
-      if (!target) return; // keep default behaviour for "#", "#!" etc.
+//   // 1) Clicking an anchor link → prevent the native jump, push history so
+//   //    Back/Forward works, animate with Lenis and close the mobile popover.
+//   scrollLinks.forEach((link) => {
+//     link.addEventListener('click', (e) => {
+//       const hash = link.getAttribute('href');
+//       const target = getTarget(hash);
+//       if (!target) return; // keep default behaviour for "#", "#!" etc.
 
-      e.preventDefault();
+//       e.preventDefault();
 
-      const mobileList = document.getElementById('mobileList');
-      let popoverOpen = false;
-      try {
-        popoverOpen = mobileList.matches(':popover-open');
-      } catch (e) { /* popover API not supported */ }
-      if (mobileList && popoverOpen && typeof mobileList.hidePopover === 'function') {
-        mobileList.hidePopover();
-      }
+//       const mobileList = document.getElementById('mobileList');
+//       let popoverOpen = false;
+//       try {
+//         popoverOpen = mobileList.matches(':popover-open');
+//       } catch (e) { /* popover API not supported */ }
+//       if (mobileList && popoverOpen && typeof mobileList.hidePopover === 'function') {
+//         mobileList.hidePopover();
+//       }
 
-      if (window.location.hash !== hash) {
-        window.history.pushState(null, '', hash);
-      }
+//       if (window.location.hash !== hash) {
+//         window.history.pushState(null, '', hash);
+//       }
 
-      scrollToTarget(hash);
+//       scrollToTarget(hash);
 
-      // Move focus for keyboard / screen-reader users without causing a jump.
-      target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    });
-  });
+//       // Move focus for keyboard / screen-reader users without causing a jump.
+//       target.setAttribute('tabindex', '-1');
+//       target.focus({ preventScroll: true });
+//     });
+//   });
 
-  // 2) Browser Back/Forward — navigate with the URL hash.
-  window.addEventListener('popstate', () => {
-    if (window.location.hash) {
-      scrollToTarget(window.location.hash);
-    } else {
-      lenis.scrollTo(0);
-    }
-  });
+//   // 2) Browser Back/Forward — navigate with the URL hash.
+//   window.addEventListener('popstate', () => {
+//     if (window.location.hash) {
+//       scrollToTarget(window.location.hash);
+//     } else {
+//       lenis.scrollTo(0);
+//     }
+//   });
 
-  // 3) Scrollspy — highlight the section currently in a narrow band near the
-  //    top of the viewport using Intersection Observer (no scroll listener).
-  const spyObserver = 'IntersectionObserver' in window
-    ? new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveNav('#' + entry.target.id);
-          }
-        });
-      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 })
-    : null;
+//   // 3) Scrollspy — highlight the section currently in a narrow band near the
+//   //    top of the viewport using Intersection Observer (no scroll listener).
+//   const spyObserver = 'IntersectionObserver' in window
+//     ? new IntersectionObserver((entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             setActiveNav('#' + entry.target.id);
+//           }
+//         });
+//       }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 })
+//     : null;
 
-  if (spyObserver) {
-    spySections.forEach((section) => {
-      spyObserver.observe(section);
-    });
-  }
+//   if (spyObserver) {
+//     spySections.forEach((section) => {
+//       spyObserver.observe(section);
+//     });
+//   }
 
-  // 4) Bottom-of-page fallback — keep the last nav item active when the
-  //    viewport band falls below the final section.
-  lenis.on('scroll', () => {
-    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-    if (atBottom && spySections.length) {
-      setActiveNav('#' + spySections[spySections.length - 1].id);
-    }
-  });
+//   // 4) Bottom-of-page fallback — keep the last nav item active when the
+//   //    viewport band falls below the final section.
+//   lenis.on('scroll', () => {
+//     const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+//     if (atBottom && spySections.length) {
+//       setActiveNav('#' + spySections[spySections.length - 1].id);
+//     }
+//   });
 
-  // 5) Page loaded with a hash (e.g. reloaded at #contact) → scroll there
-  //    after the preloader/animations have settled.
-  window.addEventListener('load', () => {
-    if (window.location.hash && getTarget(window.location.hash)) {
-      setTimeout(() => {
-        scrollToTarget(window.location.hash);
-      }, 100);
-    }
-  });
-})();
+//   // 5) Page loaded with a hash (e.g. reloaded at #contact) → scroll there
+//   //    after the preloader/animations have settled.
+//   window.addEventListener('load', () => {
+//     if (window.location.hash && getTarget(window.location.hash)) {
+//       setTimeout(() => {
+//         scrollToTarget(window.location.hash);
+//       }, 100);
+//     }
+//   });
+// })();
 
 window.addEventListener("load", () => {
   animateSplitText();
