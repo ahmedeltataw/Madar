@@ -1,37 +1,79 @@
-new Swiper(".mySwiper", {
-  slidesPerView: 1,
-  spaceBetween: 10,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    640: {
-      slidesPerView: 1,
-      spaceBetween: 20,
-    },
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 40,
-    },
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-  },
-});
+// =====================================================
+// Trusted clients — dynamic logo marquee
+// =====================================================
+// -----------------------------------------------------
+// Language detection - both languages share the same
+// renderers; only the content data switches. Arabic
+// pages use lang="ar" (the default), English pages use
+// lang="en".
+// -----------------------------------------------------
+const MADAR_LANG = (document.documentElement.lang || 'ar').toLowerCase();
+const isEnglish = MADAR_LANG === 'en';
+
+(function () {
+  const track = document.getElementById('clientsTrack');
+  const staticList = document.getElementById('clientsStatic');
+  if (!track) return;
+
+  // Temporary placeholder — reuse the existing MADAR logo asset. When the
+  // real client logos arrive, replace the entries below with { name, logo }.
+  // No component or markup changes are needed afterwards.
+  const MADAR_LOGO = 'img/logo.png';
+
+  const AR_CLIENTS = [
+    { name: 'الجمعيات الخيرية', logo: MADAR_LOGO },
+    { name: 'الشركات والمؤسسات', logo: MADAR_LOGO },
+    { name: 'المراكز الإسلامية', logo: MADAR_LOGO },
+    { name: 'المؤسسات التعليمية', logo: MADAR_LOGO },
+    { name: 'مؤسسات الحج والعمرة', logo: MADAR_LOGO },
+    { name: 'منظمات الرحلات', logo: MADAR_LOGO },
+  ];
+
+  const clients = isEnglish ? [
+    { name: 'Charities', logo: MADAR_LOGO },
+    { name: 'Companies & Organizations', logo: MADAR_LOGO },
+    { name: 'Islamic Centers', logo: MADAR_LOGO },
+    { name: 'Educational Institutions', logo: MADAR_LOGO },
+    { name: 'Hajj & Umrah Offices', logo: MADAR_LOGO },
+    { name: 'Trip Organizers', logo: MADAR_LOGO },
+  ] : AR_CLIENTS;
+
+  function itemHTML(c) {
+    const alt = isEnglish ? 'Logo of ' + c.name : 'شعار ' + c.name;
+    return (
+      '<figure class="clientLogo">' +
+        '<img src="' + c.logo + '" alt="' + alt + '" loading="lazy">' +
+        '<figcaption>' + c.name + '</figcaption>' +
+      '</figure>'
+    );
+  }
+
+  // Render ONE set (TRACK A) and duplicate it (TRACK B) at render time to
+  // build the [A][B] infinite loop. The data lives in a single source
+  // (`clients`); only the markup is repeated. The CSS translates the combined
+  // track by exactly the width of one set, so B takes A's place pixel-for-
+  // pixel and the loop is seamless. Adding a client later just works.
+  const set = '<div class="clientsSet">' + clients.map(itemHTML).join('') + '</div>';
+  track.innerHTML = set + set;
+
+  if (staticList) {
+    staticList.innerHTML = clients.map(function (c) {
+      return '<li>' + itemHTML(c) + '</li>';
+    }).join('');
+  }
+})();
 
 // Wait for DOM to be ready
-document.addEventListener('DOMContentLoaded', function () {
-  let preloader = document.querySelector('.preLoader');
-  setTimeout(() => {
-    if (preloader) {
-      preloader.style.display = 'none';
-    }
-  }, 1000); // Adjust the timeout value as needed
+// document.addEventListener('DOMContentLoaded', function () {
+//   let preloader = document.querySelector('.preLoader');
+//   setTimeout(() => {
+//     if (preloader) {
+//       preloader.style.display = 'none';
+//     }
+//   }, 1000); // Adjust the timeout value as needed
 
 
-});
+// });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -217,14 +259,22 @@ function animateFadeIn() {
 // =====================================================
 (function () {
   const grid = document.getElementById('pricingGrid');
+  const panel = document.getElementById('pricingPanel');
   const list = document.querySelector('.pricingSwitch');
   const tabs = Array.prototype.slice.call(document.querySelectorAll('.pricingSwitch-btn'));
-  if (!grid || !list || !tabs.length) return;
+  if (!grid || !panel || !list || !tabs.length) return;
 
   const isRTL = document.documentElement.dir === 'rtl';
 
-  const PRICING_DATA = {
-    companies: [
+  // Single source of truth for the pricing categories. Each key maps to a tab
+  // through the matching data-category attribute; the grid renders `plans`.
+  // A category with an empty `plans` array shows a clearly marked placeholder
+  // card until real data is provided.
+  const pricingCategoriesAr = {
+    companies: {
+      label: 'الشركات الربحية',
+      icon: 'fa-solid fa-building',
+      plans: [
       {
         name: 'باقة 3 أشهر',
         trips: '4 رحلات',
@@ -272,8 +322,12 @@ function animateFadeIn() {
         ],
         cta: 'اشترك الآن',
       },
-    ],
-    charities: [
+      ],
+    },
+    charities: {
+      label: 'الجمعيات الخيرية',
+      icon: 'fa-solid fa-hand-holding-heart',
+      plans: [
       {
         name: 'باقة 3 أشهر',
         trips: '4 رحلات',
@@ -321,8 +375,134 @@ function animateFadeIn() {
         ],
         cta: 'اشترك الآن',
       },
-    ],
+      ],
+    },
+    independentOffices: {
+      label: 'المكاتب المستقلة',
+      icon: 'fa-solid fa-briefcase',
+      // ⚠️ PLACEHOLDER — pricing for independent offices has not been provided
+      // yet. When the client supplies the packages, fill this array using the
+      // same plan shape as the other categories and the grid renders them
+      // automatically. No invented prices, trips or features are shown here.
+      plans: [],
+    },
   };
+
+  const pricingCategoriesEn = {
+    companies: {
+      label: 'For-profit companies',
+      icon: 'fa-solid fa-building',
+      plans: [
+        {
+          name: '3-Month Plan',
+          trips: '4 trips',
+          desc: 'A flexible starter plan to manage your trips and get familiar with the platform, with the option to add trips or upgrade at any time.',
+          amount: '400',
+          currency: 'SAR / 3 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Unique registration link per trip',
+            'Automatic attendance and apology system',
+            'Export data to Excel',
+            'Full technical support',
+          ],
+          cta: 'Start your trip',
+        },
+        {
+          featured: true,
+          badge: 'Most popular',
+          name: '6-Month Plan',
+          trips: '10 trips',
+          desc: 'The most balanced plan for your organization — more trips, greater management capacity, and all features included.',
+          amount: '700',
+          currency: 'SAR / 6 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Prevent duplicate registrations',
+            'Automatic attendance and apology system',
+            'Detailed statistics',
+            'Full technical support',
+          ],
+          cta: 'Choose plan',
+        },
+        {
+          name: '12-Month Plan',
+          trips: '22 trips',
+          desc: 'A full-season plan with the highest number of trips and the best value for your organization over the long term.',
+          amount: '1,200',
+          currency: 'SAR / 12 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Collect participant data easily',
+            'Reuse your trips',
+            'Comprehensive search and filtering options',
+            'Full technical support',
+          ],
+          cta: 'Subscribe now',
+        },
+      ],
+    },
+    charities: {
+      label: 'Charities',
+      icon: 'fa-solid fa-hand-holding-heart',
+      plans: [
+        {
+          name: '3-Month Plan',
+          trips: '4 trips',
+          desc: 'A flexible starter plan for charities to manage their trips, with the option to add trips or upgrade at any time.',
+          amount: '200',
+          currency: 'SAR / 3 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Unique registration link per trip',
+            'Automatic attendance and apology system',
+            'Export data to Excel',
+            'Full technical support',
+          ],
+          cta: 'Choose plan',
+        },
+        {
+          featured: true,
+          badge: 'For charities',
+          name: '6-Month Plan',
+          trips: '10 trips',
+          desc: 'A balanced plan for charities with more trips, detailed statistics, and everything you need to run your operations.',
+          amount: '350',
+          currency: 'SAR / 6 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Prevent duplicate registrations',
+            'Automatic attendance and apology system',
+            'Detailed statistics',
+            'Full technical support',
+          ],
+          cta: 'Choose plan',
+        },
+        {
+          name: '12-Month Plan',
+          trips: '22 trips',
+          desc: 'A full-season plan for charities with the highest number of trips at the best value.',
+          amount: '600',
+          currency: 'SAR / 12 months',
+          features: [
+            'Manage multiple trips at the same time',
+            'Collect participant data easily',
+            'Reuse your trips',
+            'Comprehensive search and filtering options',
+            'Full technical support',
+          ],
+          cta: 'Subscribe now',
+        },
+      ],
+    },
+    independentOffices: {
+      label: 'Independent offices',
+      icon: 'fa-solid fa-briefcase',
+      plans: [],
+    },
+  };
+
+  const pricingCategories = isEnglish ? pricingCategoriesEn : pricingCategoriesAr;
 
   function cardHTML(c) {
     return (
@@ -349,17 +529,107 @@ function animateFadeIn() {
     );
   }
 
+  function placeholderHTML(category) {
+    const t = isEnglish ? {
+      badge: 'Coming soon',
+      title: 'Plans for ',
+      status: 'In preparation',
+      desc: 'Plans for this category are coming soon. Contact us to set up your subscription as soon as possible.',
+      priceNote: 'Price to be agreed',
+      cta: 'Contact us',
+    } : {
+      badge: 'قريباً',
+      title: 'باقة ',
+      status: 'قيد التجهيز',
+      desc: 'سيتم إضافة باقات هذه الفئة قريباً. تواصل معنا لتجهيز اشتراكك في أقرب وقت.',
+      priceNote: 'قيمة تبدأ بالاتفاق',
+      cta: 'تواصل معنا',
+    };
+    return (
+      '<article class="priceCard priceCard--comingSoon">' +
+        '<span class="badge fs-12">' + t.badge + '</span>' +
+        '<div class="cardHead">' +
+          '<h3 class="fs-24">' + t.title + category.label + '</h3>' +
+          '<p class="trips fs-16"><i class="fa-light fa-hourglass-half" aria-hidden="true"></i><span>' + t.status + '</span></p>' +
+        '</div>' +
+        '<p class="desc fs-16">' +
+          t.desc +
+        '</p>' +
+        '<div class="priceBox">' +
+          '<span class="amount fs-48 fw-800">-</span>' +
+          '<span class="currency fs-16">' + t.priceNote + '</span>' +
+        '</div>' +
+        '<a href="https://wa.me/966547164990" class="btn btn-rounded">' +
+          t.cta +
+          '<i class="fa-solid fa-paper-plane ps-2" aria-hidden="true"></i>' +
+        '</a>' +
+      '</article>'
+    );
+  }
+
+  const GRID_CLASSES = {
+    1: 'd-grid grid-col-1 gap-10 pricingGrid-center pricingGrid-narrow',
+    2: 'd-grid lg:grid-col-2 md:grid-col-2 grid-col-1 gap-10 pricingGrid-center pricingGrid-wide',
+    3: 'd-grid lg:grid-col-3 md:grid-col-2 grid-col-1 gap-10',
+    4: 'd-grid lg:grid-col-4 md:grid-col-2 grid-col-1 gap-10',
+  };
+
   function render(category) {
-    grid.innerHTML = PRICING_DATA[category].map(cardHTML).join('');
+    const plans = pricingCategories[category].plans;
+    const count = Math.min(4, Math.max(1, plans.length));
+    grid.className = GRID_CLASSES[count];
+    grid.innerHTML = plans.length ? plans.map(cardHTML).join('') : placeholderHTML(pricingCategories[category]);
     if (window.ScrollTrigger) ScrollTrigger.refresh();
   }
 
   let current = 'companies';
+  let activeTab = tabs[0];
+
+  list.style.setProperty('--tab-count', tabs.length);
+
+  // Move the sliding pill onto the active tab. Offsets are measured in physical
+  // pixels, so this stays correct in RTL, LTR and with any future tab count.
+  // The pill width is also measured so it always matches the active tab exactly
+  // instead of assuming equal thirds (tabs resize when fonts load, etc).
+  const pill = document.querySelector('.pricingSwitchPill');
+
+  function positionPill(idx) {
+    if (!pill) return;
+    const tab = tabs[idx];
+    pill.style.width = tab.offsetWidth + 'px';
+    list.style.setProperty('--ind-x', (tab.offsetLeft - tabs[0].offsetLeft) + 'px');
+  }
+
+  // On narrow screens the three tabs can outgrow the viewport, so after the
+  // pill moves we bring the freshly-activated tab back into view.
+  const scroller = list;
+  function revealTab(tab) {
+    if (!scroller || scroller.scrollWidth <= scroller.clientWidth) return;
+    tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  // Re-glue the pill after reflows (viewport resize, font load, RTL switch).
+  let resizeRaf = 0;
+  window.addEventListener('resize', function () {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(function () {
+      resizeRaf = 0;
+      positionPill(tabs.indexOf(activeTab));
+    });
+  });
+
+  // Initial placement — tabs may still be measuring with fallback fonts, so
+  // reposition again once the page (and its fonts) have finished loading.
+  positionPill(0);
+  window.addEventListener('load', function () {
+    positionPill(tabs.indexOf(activeTab));
+  });
 
   function activate(tab) {
     const category = tab.getAttribute('data-category');
     if (category === current) return;
     current = category;
+    activeTab = tab;
 
     tabs.forEach(function (t) {
       const on = t === tab;
@@ -369,7 +639,9 @@ function animateFadeIn() {
     });
 
     const idx = tabs.indexOf(tab);
-    list.style.setProperty('--ind-x', idx === 0 ? '0px' : '-100%');
+    positionPill(idx);
+    panel.setAttribute('aria-labelledby', tab.id);
+    revealTab(tab);
 
     grid.querySelectorAll('.priceCard').forEach(function (card) {
       gsap.killTweensOf(card);
@@ -421,6 +693,22 @@ function animateFadeIn() {
         next.focus();
         activate(next);
       }
+    });
+  });
+})();
+
+// =====================================================
+// Close the mobile drawer when a navigation link is tapped.
+// =====================================================
+(function () {
+  const drawer = document.getElementById('mobileList');
+  if (!drawer || typeof drawer.hidePopover !== 'function') return;
+
+  drawer.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      try {
+        if (drawer.matches(':popover-open')) drawer.hidePopover();
+      } catch (e) { /* popover API not supported */ }
     });
   });
 })();

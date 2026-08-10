@@ -73,6 +73,11 @@ body {
     overflow-x: hidden;
 }
 
+/* English pages use the Latin Sen face first; Arabic keeps Tajawal. */
+html[lang="en"] body {
+    font-family: 'Sen', 'Tajawal', sans-serif;
+}
+
 menu {
     list-style: none;
     padding-inline-start: 0;
@@ -307,8 +312,8 @@ header {
     #langList {
         position-anchor: --langBtn;
         top: calc(anchor(bottom) + 5px);
-        right: auto;
-        left: calc(anchor(right) + 10px);
+        inset-inline-end: calc(anchor(start) + 10px);
+        inset-inline-start: auto;
         padding: 16px;
         background-color: var(--BGYellowLight);
         border-radius: 6px;
@@ -357,23 +362,40 @@ header {
     }
 }
 
-@starting-layer {
+/* English LTR: the mobile drawer docks to the right edge and slides in
+   from the right instead of the left. Docking applies in both states;
+   the closed-state translate stays off-screen via :not(:popover-open). */
+@media (max-width: 991px) {
+    html[lang="en"] header .list#mobileList {
+        left: auto;
+        right: 0;
+    }
+
+    html[lang="en"] header .list#mobileList:not(:popover-open) {
+        translate: 280px 0;
+    }
+}
+
+/* Starting state for the drawer and lang dropdown when they open. */
+@starting-style {
     header #mobileList:popover-open {
         translate: -240px 0;
         opacity: 0;
         scale: .8;
 
-        &:backdrop {
+        &::backdrop {
             opacity: 0;
         }
     }
 
-    header #langList:popover-open {
+    /* English LTR: the mobile drawer slides in from the right edge. */
+    html[lang="en"] header #mobileList:popover-open {
+        translate: 240px 0;
+    }
 
+    header #langList:popover-open {
         opacity: 0;
         scale: .5;
-
-
     }
 }
 
@@ -1375,6 +1397,7 @@ header {
                             font-weight: 800;
                         }
 
+                        .tripContent,
                         > div {
                             min-width: 0;
 
@@ -1802,82 +1825,167 @@ header {
     margin-bottom: 48px;
 }
 
+/* The scroll wrapper is intentionally neutral: it only constrains the track
+   when the three tabs outgrow a small phone and becomes a hidden-scrollbar
+   scroller. The pill lives inside the track so it scrolls together with the
+   tabs and always stays glued to the active one. */
 .pricingSwitch {
+    --tab-count: 3;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.pricingSwitchTrack {
     position: relative;
-    display: inline-flex;
+    /* Grid columns are auto-equal (1fr) and the track hugs its content, so the
+       three tabs share the same width regardless of label length. The pill is
+       absolutely positioned, so it never creates an extra column. */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    width: max-content;
     align-items: center;
     gap: 4px;
     padding: 4px;
+    margin-inline: auto;
     background-color: var(--BGLight);
     border: 1px solid rgba(1, 0, 0, 0.08);
     border-radius: 999px;
     box-shadow: inset 0 1px 2px rgba(1, 0, 0, 0.04), 0 10px 30px -22px rgba(1, 0, 0, 0.18);
+}
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 4px;
-        bottom: 4px;
-        inset-inline-start: 4px;
-        width: calc(50% - 4px);
-        border-radius: calc(999px - 4px);
-        background-color: var(--mainColor);
-        box-shadow: 0 12px 26px -14px rgba(57, 135, 77, 0.55);
-        transform: translateX(var(--ind-x, 0px));
-        transition: transform var(--ts);
-        z-index: 0;
-        pointer-events: none;
+.pricingSwitchPill {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    inset-inline-start: 4px;
+    width: calc(100% / var(--tab-count, 3) - 4px);
+    border-radius: calc(999px - 4px);
+    background-color: var(--mainColor);
+    box-shadow: 0 12px 26px -14px rgba(57, 135, 77, 0.55);
+    transform: translateX(var(--ind-x, 0px));
+    transition: transform var(--ts), width var(--ts);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.pricingSwitch-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 170px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: calc(999px - 4px);
+    background: transparent;
+    color: var(--gray);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color var(--ts), background-color var(--ts);
+
+    i {
+        font-size: 1.05rem;
+    }
+
+    &:hover:not(.is-active) {
+        color: var(--mainColor);
+        background-color: rgba(57, 135, 77, 0.08);
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba(57, 135, 77, 0.35);
+        outline-offset: 3px;
+    }
+
+    &.is-active {
+        color: var(--white);
+    }
+}
+
+/* ---- mobile pricing tabs: vertical stack ---- */
+/* On phones the three horizontal tabs outgrow the viewport. Switch to a
+   clean vertical category selector: full-width stacked buttons, active state
+   via direct background (pill is hidden), comfortable 48px+ touch targets. */
+@media(max-width:767px) {
+    .pricingSwitchWrap {
+        padding-inline: 8px;
+        justify-content: stretch;
+    }
+
+    .pricingSwitch {
+        width: 100%;
+        overflow-x: visible;
+    }
+
+    .pricingSwitchTrack {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+        padding: 6px;
+        border-radius: 16px;
+    }
+
+    .pricingSwitchPill {
+        display: none;
     }
 
     .pricingSwitch-btn {
-        position: relative;
-        z-index: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        min-width: 180px;
-        padding: 12px 24px;
-        border: 0;
-        border-radius: calc(999px - 4px);
-        background: transparent;
-        color: var(--gray);
-        font-family: inherit;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: color var(--ts), background-color var(--ts);
-
-        i {
-            font-size: 1.05rem;
-        }
-
-        &:hover:not(.is-active) {
-            color: var(--mainColor);
-            background-color: rgba(57, 135, 77, 0.08);
-        }
-
-        &:focus-visible {
-            outline: 3px solid rgba(57, 135, 77, 0.35);
-            outline-offset: 3px;
-        }
+        width: 100%;
+        min-width: 0;
+        justify-content: flex-start;
+        padding: 14px 18px;
+        border-radius: 12px;
+        font-size: .92rem;
 
         &.is-active {
+            background-color: var(--mainColor);
             color: var(--white);
+            box-shadow: 0 4px 16px -4px rgba(57, 135, 77, 0.35);
+        }
+    }
+}
+
+/* grid layout modifiers for fewer-than-3 plans — keep the cards balanced */
+#pricingGrid.pricingGrid-center {
+    margin-inline: auto;
+}
+
+#pricingGrid.pricingGrid-narrow {
+    max-width: 480px;
+}
+
+#pricingGrid.pricingGrid-wide {
+    max-width: 780px;
+}
+
+/* Coming-soon placeholder card — same card language, no invented pricing */
+.priceCard--comingSoon {
+    .priceBox {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+
+        .amount {
+            color: var(--gray);
+            font-size: 2.4rem;
         }
     }
 
-    @media(max-width:767px) {
-        width: 100%;
-        max-width: 340px;
-
-        .pricingSwitch-btn {
-            flex: 1;
-            min-width: 0;
-            gap: 6px;
-            padding: 11px 14px;
-            font-size: .9rem;
-        }
+    .badge {
+        margin-bottom: 16px;
     }
 }
 
@@ -2237,39 +2345,179 @@ header {
     }
 }
 
-/*  */
-.Clients {
+/* ============ trusted clients — logo marquee ============ */
+.clientsSection {
+    position: relative;
     padding-block: 80px;
+    overflow: hidden;
 
-    .swiper {
-        padding-block: 80px;
+    &::before {
+        content: '';
+        position: absolute;
+        inset-inline: 0;
+        top: 42%;
+        height: 58%;
+        background: radial-gradient(50% 65% at 50% 50%, rgba(57, 135, 77, 0.07), transparent 70%);
+        pointer-events: none;
+    }
+}
 
-        .swiper-pagination-bullet {
-            width: 10px;
-            height: 10px;
-            transition: var(--ts);
+.clientsMarquee {
+    --client-gap: 28px;
+    position: relative;
+    margin-top: 48px;
+    overflow: hidden;
+    padding-block: 10px;
+    /* Anchor the track to the left edge regardless of the RTL page. If the
+       track stayed right-anchored, the -50% (leftward) loop would slide the
+       whole stream out of view and the viewport would go empty every cycle.
+       The mask below is symmetric, so the edge fade is unchanged. */
+    direction: ltr;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* The track renders two identical sets ([A][B]) and animates by exactly the
+   width of ONE set (-50% of the track), so set B replaces set A at the same
+   pixel position and the loop is mathematically seamless. */
+.clientsTrack {
+    display: flex;
+    align-items: center;
+    direction: ltr;
+    width: max-content;
+    will-change: transform;
+    animation: clientsScroll 42s linear infinite;
+}
+
+@keyframes clientsScroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* Each set carries its trailing gap (matching the internal gap) so spacing is
+   identical between logos, at the [A][B] seam, and at the loop wrap point. */
+.clientsSet {
+    display: flex;
+    align-items: center;
+    gap: var(--client-gap);
+    padding-inline-end: var(--client-gap);
+}
+
+/* Subtle pause on hover — freezes at the exact transform, resumes from the
+   exact same position (animation-play-state never causes a jump).
+   Limited to precise pointers so touch devices are never affected. */
+@media (hover: hover) {
+    .clientsMarquee:hover .clientsTrack {
+        animation-play-state: paused;
+    }
+}
+
+.clientLogo {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 190px;
+    min-height: 118px;
+    margin: 0;
+    padding: 22px 18px;
+    border: 1px solid rgba(1, 0, 0, 0.08);
+    border-radius: 18px;
+    background-color: var(--white);
+    box-shadow: 0 1px 2px rgba(1, 0, 0, 0.03), 0 10px 30px -22px rgba(1, 0, 0, 0.18);
+    transition: var(--ts);
+
+    img {
+        height: 40px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        opacity: .7;
+        filter: grayscale(1);
+        transition: var(--ts);
+    }
+
+    figcaption {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: .95rem;
+        font-weight: 700;
+        color: var(--gray);
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: var(--BGLight);
+
+        img {
+            opacity: 1;
+            filter: grayscale(0);
+            transform: scale(1.05);
         }
+    }
+}
 
-        .swiper-pagination-bullet-active {
-            background-color: var(--mainColor);
-            width: 30px !important;
-            height: 10px !important;
-            border-radius: 6px;
+/* static accessible list — visually hidden unless motion is reduced */
+.clientsStatic {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    list-style: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clientsMarquee {
+        display: none;
+    }
+
+    .clientsStatic {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 48px 0 0;
+        padding: 0;
+        overflow: visible;
+        clip: auto;
+        clip-path: none;
+        white-space: normal;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+
+        .clientLogo {
+            width: 100%;
+            min-height: 0;
+            padding: 18px 12px;
+
+            img {
+                height: 34px;
+            }
+
+            figcaption {
+                white-space: normal;
+            }
         }
     }
 
-    .clientCard {
-        background-color: var(--white);
-
-        p {
-            color: var(--gray);
-        }
-
-        .rate {
-            i {
-                color: #FFB525;
-                font-size: 1.1rem;
-            }
+    @media (min-width: 768px) {
+        .clientsStatic {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }
@@ -2385,11 +2633,6 @@ footer {
     }
 }
 
-.swiper {
-    width: 100%;
-    height: 100%;
-}
-
 /*  */
 .fadeIn {
     transition: opacity 0.5s ease;
@@ -2490,8 +2733,7 @@ html.lenis body {
 .stepCard,
 .reqCard,
 .contactCard,
-.priceCard,
-.clientCard {
+.priceCard {
     border-color: rgba(1, 0, 0, 0.08);
     box-shadow: 0 1px 2px rgba(1, 0, 0, 0.03), 0 10px 30px -22px rgba(1, 0, 0, 0.18);
 }
@@ -2500,8 +2742,7 @@ html.lenis body {
 .stepCard:hover,
 .reqCard:hover,
 .contactCard:hover,
-.priceCard:not(.featured):hover,
-.clientCard:hover {
+.priceCard:not(.featured):hover {
     translate: 0 -6px;
     box-shadow: 0 24px 48px -22px rgba(57, 135, 77, 0.22), 0 12px 28px -16px rgba(1, 0, 0, 0.12);
 }
@@ -2866,6 +3107,7 @@ html.lenis body {
                 justify-content: center;
                 gap: 6px;
                 padding: 14px;
+                min-width: 0;
                 background-color: var(--white);
                 border: 1px solid rgba(1, 0, 0, 0.06);
                 border-radius: 14px;
@@ -2878,6 +3120,10 @@ html.lenis body {
                     font-size: .68rem;
                     font-weight: 700;
                     color: var(--gray);
+
+                    span {
+                        min-width: 0;
+                    }
                 }
 
                 .tRow {
@@ -3114,6 +3360,34 @@ html.lenis body {
             bottom: -8px;
         }
     }
+
+    @media(max-width:767px) {
+        /* the why-preview is narrower than the hero browser mockup, so the
+           chart + trips row must stack on phones instead of clipping */
+        .whyPreview .dash .dashRow {
+            grid-template-columns: 1fr;
+        }
+
+        .whyPreview .dash .dashStats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+
+            .stat {
+                padding: 10px;
+                gap: 8px;
+
+                em {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media(max-width:430px) {
+        .whyPreview .dash .dashStats {
+            grid-template-columns: 1fr;
+        }
+    }
 }
 
 /* Facilities — full-width muted map + premium stat cards */
@@ -3266,9 +3540,7 @@ html.lenis body {
             padding-inline: 8px;
 
             .phoneMock {
-                inset-inline-end: 8px;
-                bottom: 6px;
-                width: 116px;
+                display: none;
             }
 
             .floatCard.fcQr {
@@ -3278,6 +3550,103 @@ html.lenis body {
 
             .floatCard.fcWa {
                 display: none;
+            }
+
+            /* collapse the 168px sidebar to icon-only — frees space for main */
+            .mockDash {
+                grid-template-columns: 52px 1fr !important;
+            }
+
+            .mockSide {
+                width: 52px;
+                padding: 10px 6px;
+
+                nav a span {
+                    display: none;
+                }
+            }
+
+            /* reduce main area padding */
+            .mockMain {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            /* stack the two stat cards vertically instead of side-by-side */
+            .mockStats {
+                grid-template-columns: 1fr !important;
+                gap: 8px;
+            }
+
+            /* unified stat card spacing */
+            .mockStat {
+                padding: 12px;
+                gap: 10px;
+
+                .sIcon {
+                    width: 32px;
+                    height: 32px;
+                    font-size: .82rem;
+                    border-radius: 8px;
+                }
+
+                > div b {
+                    font-size: .85rem;
+                }
+
+                > div span {
+                    font-size: .65rem;
+                }
+            }
+
+            /* unified trip card spacing + badge never overlaps text */
+            .mockTrip {
+                position: relative;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 12px;
+                padding-top: 18px;
+
+                .tAvatar {
+                    width: 30px;
+                    height: 30px;
+                    font-size: .72rem;
+                    flex-shrink: 0;
+                }
+
+                .tripContent {
+                    min-width: 0;
+                    flex: 1;
+
+                    b {
+                        display: block !important;
+                        font-size: .8rem !important;
+                        line-height: 1.3;
+                        color: var(--dark);
+                        white-space: normal !important;
+                    }
+
+                    small {
+                        display: block !important;
+                        margin-top: 2px !important;
+                        font-size: .62rem !important;
+                        color: var(--gray);
+                        white-space: normal !important;
+                        gap: 0 !important;
+                    }
+                }
+
+                .status {
+                    position: absolute !important;
+                    top: 6px;
+                    inset-inline-end: 8px;
+                    margin-inline-start: 0 !important;
+                    padding: 2px 8px !important;
+                    font-size: .58rem !important;
+                    line-height: 1.4;
+                    flex-shrink: 0 !important;
+                }
             }
         }
     }
@@ -3350,35 +3719,204 @@ html.lenis body {
     }
 }
 
-/* clients — card framing + modern initial avatars */
-.clientAvatar {
-    margin: 0;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: var(--BGYellowLight);
-    color: var(--mainColor);
-    border: 1px solid rgba(57, 135, 77, 0.16);
-    box-shadow: 0 10px 22px -14px rgba(57, 135, 77, 0.4);
-    font-size: 1.35rem;
-    font-weight: 800;
+/* ================= features page ================= */
 
-    &.ca-solid {
-        background-color: var(--mainColor);
-        color: var(--white);
-        border-color: transparent;
+/* Compact page hero — same visual language as the homepage hero, much smaller */
+.pageHero {
+    position: relative;
+    padding-block: 56px 44px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse 90% 60% at 50% -5%, rgba(57, 135, 77, 0.12), rgba(255, 255, 255, 0) 60%);
+
+    /* light grid pattern, mirroring the homepage hero */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(1, 0, 0, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(1, 0, 0, 0.035) 1px, transparent 1px);
+        background-size: 46px 46px;
+        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 78%);
+        mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 78%);
+        pointer-events: none;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .pageHeroBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border: 1px solid rgba(57, 135, 77, 0.22);
+        border-radius: 999px;
+        background-color: var(--BGYellowLight);
+        color: var(--mainColor);
+        font-weight: 700;
+        font-size: .95rem;
+        margin-bottom: 18px;
+    }
+
+    .pageHeroTitle {
+        margin: 0 auto;
+        max-width: 20ch;
+        font-size: clamp(2.1rem, 1.6rem + 1.8vw, 3.1rem);
+        font-weight: 900;
+        line-height: 1.2;
+        text-wrap: balance;
+    }
+
+    .pageHeroDesc {
+        margin: 16px auto 0;
+        max-width: 620px;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--gray);
     }
 }
 
-.Clients {
+/* Video tutorials — white band between the tinted features band and the CTA */
+.videoSection {
+    padding-block: 80px;
+    background-color: var(--white);
+    background-image: radial-gradient(ellipse 90% 55% at 50% -8%, rgba(57, 135, 77, 0.06), rgba(255, 255, 255, 0) 60%);
+
+    .mainHeading {
+        margin-bottom: 48px;
+    }
+}
+
+/* Video card — premium but simple; shares the site's card language */
+.videoCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    border: 1px solid rgba(1, 0, 0, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(1, 0, 0, 0.03), 0 10px 30px -22px rgba(1, 0, 0, 0.18);
+    transition: var(--ts);
+
+    &:hover {
+        translate: 0 -6px;
+        box-shadow: 0 24px 48px -22px rgba(57, 135, 77, 0.22), 0 12px 28px -16px rgba(1, 0, 0, 0.12);
+    }
+}
+
+/* 16:9 preview — product-UI inspired placeholder until a real video is added */
+.videoPreview {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: var(--BGYellowLight);
+    background-image:
+        linear-gradient(rgba(57, 135, 77, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57, 135, 77, 0.07) 1px, transparent 1px);
+    background-size: 26px 26px;
     overflow: hidden;
 
-    .clientAvatar {
-        width: 64px;
-        height: 64px;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 72% 70% at 50% 42%, rgba(57, 135, 77, 0.22), rgba(57, 135, 77, 0) 72%);
+        pointer-events: none;
     }
+
+    /* faint "dashboard rows" sketch suggesting a product walkthrough */
+    .videoSkeleton {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 9px;
+        padding-inline: 28px;
+
+        span {
+            display: block;
+            height: 9px;
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 1px 0 rgba(57, 135, 77, 0.12);
+        }
+
+        .skW40 { width: 40%; }
+        .skW90 { width: 90%; }
+        .skW70 { width: 70%; }
+        .skW50 { width: 50%; }
+    }
+
+    /* play button — the focal point of the thumbnail */
+    .playBtn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 62px;
+        height: 62px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background-color: var(--white);
+        color: var(--mainColor);
+        font-size: 1.25rem;
+        box-shadow: 0 18px 40px -14px rgba(57, 135, 77, 0.55), 0 2px 6px rgba(1, 0, 0, 0.08);
+        transition: var(--ts);
+
+        i {
+            transform: translateX(-2px);
+        }
+    }
+
+    &:hover .playBtn {
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* when a real <video> is dropped in, it fills the preview */
+    video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* a real video element hides the placeholder pieces automatically */
+.videoPreview:has(video) .videoSkeleton,
+.videoPreview:has(video) .playBtn,
+.videoPreview:has(video)::before {
+    display: none;
+}
+
+.videoBody {
+    padding: 20px 22px 24px;
+
+    h3 {
+        margin-bottom: 6px;
+        font-size: 1.15rem;
+        font-weight: 800;
+    }
+
+    p {
+        margin: 0;
+        color: var(--gray);
+        font-size: .95rem;
+        line-height: 1.7;
+    }
+}
+
+/* CTA band — paired actions */
+.ctaActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
 /* ================= end premium polish ================= */
