@@ -503,6 +503,15 @@ header {
                     color: var(--white);
                 }
             }
+
+        @media (max-width:580px){
+           .btn-rounded{
+            min-width: 120px;
+            padding: 8px 16px;
+            font-size: .8rem;
+            font-weight: 600;
+           } 
+        }
     }
 
     /* 5. trust indicators */
@@ -3929,5 +3938,10 @@ html.lenis body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+@media (max-width:580px){
+    .AE_d-none{
+        display: none !important;
     }
 }
