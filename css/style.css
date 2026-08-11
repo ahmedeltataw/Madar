@@ -486,7 +486,7 @@ header {
     .heroActions {
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         gap: 14px;
         margin-top: 34px;
 
@@ -507,7 +507,7 @@ header {
         @media (max-width:580px){
            .btn-rounded{
             min-width: 120px;
-            padding: 8px 16px;
+            padding: 12px 20px;
             font-size: .8rem;
             font-weight: 600;
            } 
